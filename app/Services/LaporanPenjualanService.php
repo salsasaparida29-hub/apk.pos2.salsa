@@ -39,7 +39,7 @@ class LaporanPenjualanService
             ->select(
                 'produk.nama',
                 'produk.stok',
-                DB::raw('SUM(item_penjualan.kualitas) as total_terjual')
+                DB::raw('SUM(item_penjualan.kuantitas) as total_terjual')
             )
             ->orderByDesc('total_terjual')
             ->limit($limit)

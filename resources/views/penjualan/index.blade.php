@@ -6,9 +6,15 @@
 
 @include('layouts.navbar')
 
+@if (session('errors'))
+    <div class="alert alert-danger">
+        {{ session('errors') }}
+    </div>
+@endif
+
 <h1>Halaman penjualan</h1>
 
-<a href="{{ route('penjualan.create')}}" class="btn btn-primary mb-3">Create</a>
+<a href="{{ route('penjualan.create') }}" class="btn btn-primary mb-3">Create</a>
 
 <form action="{{ route('penjualan.index')}}" method="GET" class="mb-3">
     <div class="input-group">
@@ -49,16 +55,19 @@
             <th scope="row">{{ ($sales->firstItem() + $loop->index) }}</th>
             <td>{{$sale->created_at->translatedFormat('d-m-Y- H:i:s')}}</td>
             <td>{{ $sale->user->name }}</td>
-            <td>Rp.{{number_format($sale->total_pembayaran)}}</td>
+            <td>Rp. {{number_format ($sale->total_pembayaran) }}</td>
             <td>{{ $sale->metode_pembayaran }}</td>
             <td>{{ $sale->status }}</td>
             <td class="d-flex gap-1">
                 <a href="" class="btn btn-primary">Detail</a>
+                @can('delete', $sale)
                 ||
-                <a href="" class="btn btn-warning">Edit</a>
+                <a href="{{ route('penjualan.edit', $sale) }}" class="btn btn-warning">Edit</a>
+                @endcan
+                @can('delete', $sale)
                 ||
 
-                <form action="" method="" class="d-inline">
+                <form action="{{ route('penjualan.destroy', $sale) }}" method="POST" class="d-inline">
                     @csrf
                     @method('DELETE')
 
@@ -69,6 +78,7 @@
 
                     </button>
                 </form>
+                @endcan
             </td>
         </tr>
 

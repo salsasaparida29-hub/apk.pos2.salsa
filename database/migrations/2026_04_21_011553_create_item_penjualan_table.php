@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('penjualan_id')->constrained('penjualan','id');
             $table->foreignId('produk_id')->constrained('produk','id');
-            $table->integer('kualitas');
+            $table->integer('kuantitas');
             $table->integer('harga_satuan');
             $table->integer('subtotal');
             $table->timestamps();
