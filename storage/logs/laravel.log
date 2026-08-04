@@ -16600,3 +16600,411 @@ Did you mean one of these?
 #63 C:/Users/rpspp/apk.pos.salsa/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php(23): require_once('C://Users//rpspp//...')
 #64 {main}
 "} 
+[2026-08-04 06:46:39] local.ERROR: syntax error, unexpected token "class", expecting "{" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"class\", expecting \"{\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 06:46:58] local.ERROR: syntax error, unexpected token "class", expecting "," or ";" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"class\", expecting \",\" or \";\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:8)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 06:47:02] local.ERROR: syntax error, unexpected fully qualified name "\Auth", expecting "{" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected fully qualified name \"\\Auth\", expecting \"{\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:6)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 06:47:10] local.ERROR: syntax error, unexpected token "class", expecting "," or ";" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"class\", expecting \",\" or \";\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:8)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 06:47:25] local.ERROR: syntax error, unexpected token "class", expecting "," or ";" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"class\", expecting \",\" or \";\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:8)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 06:47:58] local.ERROR: syntax error, unexpected token "class", expecting "," or ";" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"class\", expecting \",\" or \";\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:8)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 06:48:02] local.ERROR: syntax error, unexpected token "class", expecting "," or ";" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"class\", expecting \",\" or \";\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:8)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 06:48:14] local.ERROR: syntax error, unexpected token "class", expecting "," or ";" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"class\", expecting \",\" or \";\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:8)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 06:49:02] local.ERROR: syntax error, unexpected token "class", expecting "," or ";" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"class\", expecting \",\" or \";\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:8)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 06:50:02] local.ERROR: syntax error, unexpected token "class", expecting "," or ";" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"class\", expecting \",\" or \";\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:8)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 06:51:02] local.ERROR: syntax error, unexpected token "class", expecting "," or ";" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"class\", expecting \",\" or \";\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:8)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 06:52:02] local.ERROR: syntax error, unexpected token "class", expecting "," or ";" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"class\", expecting \",\" or \";\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:8)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 06:53:02] local.ERROR: syntax error, unexpected token "class", expecting "," or ";" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"class\", expecting \",\" or \";\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:8)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 06:54:02] local.ERROR: syntax error, unexpected token "class", expecting "," or ";" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"class\", expecting \",\" or \";\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:8)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 06:55:02] local.ERROR: syntax error, unexpected token "class", expecting "," or ";" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"class\", expecting \",\" or \";\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:8)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 06:56:02] local.ERROR: syntax error, unexpected token "class", expecting "," or ";" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"class\", expecting \",\" or \";\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:8)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 06:57:02] local.ERROR: syntax error, unexpected token "class", expecting "," or ";" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"class\", expecting \",\" or \";\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:8)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 06:58:02] local.ERROR: syntax error, unexpected token "class", expecting "," or ";" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"class\", expecting \",\" or \";\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:8)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 06:59:02] local.ERROR: syntax error, unexpected token "class", expecting "," or ";" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"class\", expecting \",\" or \";\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:8)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:00:02] local.ERROR: syntax error, unexpected token "class", expecting "," or ";" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"class\", expecting \",\" or \";\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:8)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:01:02] local.ERROR: syntax error, unexpected token "class", expecting "," or ";" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"class\", expecting \",\" or \";\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:8)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:02:02] local.ERROR: syntax error, unexpected token "class", expecting "," or ";" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"class\", expecting \",\" or \";\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:8)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:03:02] local.ERROR: syntax error, unexpected token "class", expecting "," or ";" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"class\", expecting \",\" or \";\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:8)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:04:02] local.ERROR: syntax error, unexpected token "class", expecting "," or ";" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"class\", expecting \",\" or \";\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:8)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:04:13] local.ERROR: Uncaught Error: Class "App\Models\Model" not found in C:\Users\rpspp\apk.pos.salsa\app\Models\User.php:9
+Stack trace:
+#0 Command line code(1): include_once()
+#1 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught Error: Class \"App\\Models\\Model\" not found in C:\\Users\\rpspp\\apk.pos.salsa\\app\\Models\\User.php:9
+Stack trace:
+#0 Command line code(1): include_once()
+#1 {main}
+  thrown at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:9)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:04:23] local.ERROR: syntax error, unexpected token "class" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"class\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:9)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:04:53] local.ERROR: Uncaught Error: Class "App\Models\Model" not found in C:\Users\rpspp\apk.pos.salsa\app\Models\User.php:9
+Stack trace:
+#0 Command line code(1): include_once()
+#1 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught Error: Class \"App\\Models\\Model\" not found in C:\\Users\\rpspp\\apk.pos.salsa\\app\\Models\\User.php:9
+Stack trace:
+#0 Command line code(1): include_once()
+#1 {main}
+  thrown at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:9)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:05:02] local.ERROR: syntax error, unexpected token "}" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"}\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:12)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:05:19] local.ERROR: syntax error, unexpected token "}", expecting "," or ";" or "{" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"}\", expecting \",\" or \";\" or \"{\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:12)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:05:44] local.ERROR: Uncaught Error: Class "App\Models\Model" not found in C:\Users\rpspp\apk.pos.salsa\app\Models\User.php:9
+Stack trace:
+#0 Command line code(1): include_once()
+#1 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught Error: Class \"App\\Models\\Model\" not found in C:\\Users\\rpspp\\apk.pos.salsa\\app\\Models\\User.php:9
+Stack trace:
+#0 Command line code(1): include_once()
+#1 {main}
+  thrown at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:9)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:05:53] local.ERROR: syntax error, unexpected token "}" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"}\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:12)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:06:00] local.ERROR: syntax error, unexpected token "class", expecting "," or ";" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"class\", expecting \",\" or \";\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:8)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:06:02] local.ERROR: syntax error, unexpected token "class", expecting "," or ";" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"class\", expecting \",\" or \";\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:8)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:06:10] local.ERROR: Uncaught Error: Class "App\Models\Model" not found in C:\Users\rpspp\apk.pos.salsa\app\Models\User.php:9
+Stack trace:
+#0 Command line code(1): include_once()
+#1 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught Error: Class \"App\\Models\\Model\" not found in C:\\Users\\rpspp\\apk.pos.salsa\\app\\Models\\User.php:9
+Stack trace:
+#0 Command line code(1): include_once()
+#1 {main}
+  thrown at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:9)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:06:48] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:07:02] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:07:12] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:07:19] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:07:39] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:07:45] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:08:02] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:08:02] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:08:10] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:08:22] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:08:31] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:09:00] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:09:02] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:09:32] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:09:40] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:09:50] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:09:56] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:10:02] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:10:05] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:10:12] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:10:22] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:10:55] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:11:02] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:11:13] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:11:44] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:12:02] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:12:13] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:12:20] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:12:39] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:12:46] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:13:00] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:13:02] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:13:12] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:13:18] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:13:29] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:13:35] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:13:42] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:13:47] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:13:53] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:14:02] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:14:03] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:14:14] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:15:02] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:15:14] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:15:19] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:15:50] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:16:00] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:16:02] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:16:43] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:17:02] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:17:43] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:18:02] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:18:15] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:18:47] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:19:02] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:19:09] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:19:15] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:19:24] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:20:03] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2026-08-04 07:21:02] local.ERROR: syntax error, unexpected token "@", expecting "function" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"@\", expecting \"function\" at C:/Users/rpspp/apk.pos.salsa/app/Models/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
