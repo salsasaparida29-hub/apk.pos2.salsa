@@ -26,7 +26,8 @@ class PenjualanFactory extends Factory
             'metode_pembayaran' => $this->faker->randomElement([
                 'CASH', 'TRANSFER', 'QRIS'
             ]),
-            'status' => $this->randomElement(['OPEN', 'COMPLETED']),
+            // PERBAIKAN DI SINI: Tambahkan ->faker-> sebelum randomElement
+            'status' => $this->faker->randomElement(['OPEN', 'COMPLETED']),
         ];
     }
 }

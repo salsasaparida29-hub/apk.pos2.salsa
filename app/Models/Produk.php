@@ -20,6 +20,11 @@ class Produk extends Model
         'stok'
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
     public function itemPenjualan()
     {
         return $this->hasMany(ItemPenjualan::class,'produk_id');

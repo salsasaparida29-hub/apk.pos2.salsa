@@ -6,6 +6,26 @@
 
 @include('layouts.navbar')
 
+<style>
+    .btn-primary,
+    .btn-warning {
+        background-color: #5b52e0;
+        border-color: #5b52e0;
+        color: #ffffff;
+    }
+ 
+    .btn-primary:hover,
+    .btn-warning:hover {
+        background-color: #4a42c4;
+        border-color: #4a42c4;
+        color: #ffffff;
+    }
+ 
+    .table thead th {
+        background-color: #f5f4ff;
+    }
+</style>
+
 <h1>Halaman Users</h1>
 <a href="{{ route('admin.users.create') }}" class="btn btn-primary">Create</a>
 

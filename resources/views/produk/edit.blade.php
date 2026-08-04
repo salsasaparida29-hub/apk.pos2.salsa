@@ -7,14 +7,14 @@
 <h4>Edit Produk</h4>
 
 <form action="{{ route('produk.update', $produk) }}"
-method="POST"
-enctype="multipart/form-data">
-@method('PUT')
+      method="POST"
+      enctype="multipart/form-data">
 
-@include('produk._form')
+    @csrf
+    @method('PUT')
+
+    @include('produk._form')
 
 </form>
 
 @endsection
-
-
