@@ -11,7 +11,7 @@
         margin: 0;
     }
     body {
-        background: #eceff3;
+        background-color: #f8f9fa;
         font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
         display: flex;
         flex-direction: column;
@@ -32,42 +32,58 @@
         justify-content: center;
         padding: 1rem;
     }
+    /* Kartu form login, solid putih (tidak transparan) */
     .login-card {
         width: 100%;
         max-width: 400px;
         border-radius: 12px;
         overflow: hidden;
         border: none;
-        box-shadow: 0 4px 20px rgba(15, 23, 42, 0.08) !important;
+        background-color: #ffffff;
+        box-shadow: 0 8px 30px rgba(15, 23, 42, 0.2) !important;
     }
     .login-card .card-header {
-        background: #0b5ed8;
-        color: #ffffff;
+        background: #ffffff;
+        color: #2b2440;
         font-weight: 700;
-        font-size: 18px;
+        font-size: 20px;
         text-align: center;
-        border-bottom: 1px solid #dee2e6;
-        padding: 18px;
+        border-bottom: none;
+        padding: 24px 24px 8px;
     }
     .form-label {
         color: #212529;
         font-weight: 600;
     }
     .form-control {
-        border-color: #e2e6ee;
+        background-color: #ffffff;
+        border: 1px solid #e2e6ee;
+        border-radius: 8px;
     }
     .form-control:focus {
-        border-color: #86b7fe;
-        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+        border-color: #7c6fe0;
+        box-shadow: 0 0 0 0.25rem rgba(124, 111, 224, 0.25);
+    }
+    .form-check-label,
+    .forgot-link {
+        font-size: 13px;
+        font-weight: 600;
+    }
+    .forgot-link {
+        color: #7c6fe0;
+        text-decoration: none;
+    }
+    .forgot-link:hover {
+        text-decoration: underline;
     }
     .btn-indigo {
-        background-color: #0d6efd;
-        border-color: #0d6efd;
+        background-color: #6a5ae0;
+        border-color: #6a5ae0;
         color: #ffffff;
     }
     .btn-indigo:hover {
-        background-color: #0b5ed8;
-        border-color: #0a58ca;
+        background-color: #5849d6;
+        border-color: #5849d6;
         color: #ffffff;
     }
     .alert-success-custom {
@@ -95,15 +111,13 @@
 <?php endif; ?>
 
 <div class="login-wrapper">
-<div class="container d-flex justify-content-center">
 
-    <div class="login-card card bg-white">
+    <div class="login-card card">
 
-        <div class="card-header">Login Pos</div>
-        <div class="card-body p-4">
+        <div class="card-header">Login</div>
+        <div class="card-body p-4 pt-2">
 
             <?php if($errors->any()): ?>
-                <!-- Menggunakan class alert kustom yang baru -->
                 <div class="alert alert-danger-custom py-2 mb-3 small rounded-3">
                     <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <div><?php echo e($error); ?></div>
@@ -114,19 +128,27 @@
             <form method="POST" action="<?php echo e(route('auth')); ?>">
                 <?php echo csrf_field(); ?>
                 <div class="mb-3">
-                    <label class="form-label">Email address</label>
+                    <label class="form-label">Email ID</label>
                     <input type="email" name="email" value="<?php echo e(old('email')); ?>" class="form-control" placeholder="" required autofocus>
                 </div>
-                <div class="mb-4">
+                <div class="mb-3">
                     <label class="form-label">Password</label>
                     <input type="password" name="password" class="form-control" placeholder="" required>
                 </div>
-                <!-- Mengubah class tombol dari btn-primary menjadi btn-indigo -->
-                <button type="submit" class="btn btn-indigo w-100 rounded-2 py-2 fw-semibold">Submit</button>
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="remember" id="remember">
+                        <label class="form-check-label" for="remember">Remember me</label>
+                    </div>
+                    <a href="#" class="forgot-link">Forgot Password?</a>
+                </div>
+
+                <button type="submit" class="btn btn-indigo w-100 rounded-2 py-2 fw-semibold">Login</button>
             </form>
         </div>
     </div>
-</div>
+
 </div>
 </body>
 </html><?php /**PATH C:\Users\rpspp\apk.pos.salsa\resources\views/login.blade.php ENDPATH**/ ?>

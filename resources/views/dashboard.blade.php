@@ -8,7 +8,7 @@
 
 <style>
     .card-header {
-        background-color: #5b52e0;
+        background-color: #7c6fe0;
         color: #ffffff;
         font-weight: 600;
         border-bottom: none;
@@ -32,11 +32,11 @@
     }
 </style>
 
-<div class="text-center mt-5">
+<div class="text-center mt-4">
     <h1 class="mb-1">
         Ringkasan Hari Ini
         <small class="text-muted" style="font-size: 2rem;">
-            ({{ $tanggalHariIni->translatedFormat('1, d F Y') }})
+            ({{ $tanggalHariIni->translatedFormat('l, d F Y') }})
         </small>
     </h1>
 
@@ -73,7 +73,7 @@
             </div>
         </div>
 
-        <div class="row text-center mt-5">
+        <div class="row text-center mt-4">
             <div class="col-md-12">
                 <h4 class="section-title">Cash &amp; Payment Status</h4>
             </div>
@@ -108,7 +108,7 @@
         </div>
     @endcan
 
-    <div class="row mt-5">
+    <div class="row mt-4">
 
         <div class="col-md-12">
             <h4 class="section-title">Critical Inventory Status</h4>
@@ -181,7 +181,7 @@
         </div>
     </div>
 
-    <div class="row mt-5">
+    <div class="row mt-4">
         <div class="col-md-12">
             <h4 class="section-title">Best Seller Products</h4>
         </div>

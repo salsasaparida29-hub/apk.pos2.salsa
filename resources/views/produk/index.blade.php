@@ -53,10 +53,10 @@
 
         <tr>
 
-            <th scope="row">{{ $products->firstItem() + $loop->index }}</th>
-            <td>{{ $product->user?->name ?? '-' }}</td>
+            <th scope="row" class="align-middle">{{ $products->firstItem() + $loop->index }}</th>
+            <td class="align-middle">{{ $product->user?->name ?? '-' }}</td>
 
-            <td>
+            <td class="align-middle">
                 <img
                     src="{{ asset('storage/' . $product->foto) }}"
                     width="100"
@@ -64,34 +64,39 @@
                 >
             </td>
 
-            <td>{{ $product->nama }}</td>
-            <td>{{ $product->harga_beli }}</td>
-            <td>{{ $product->harga_jual }}</td>
-            <td>{{ $product->stok }}</td>
+            <td class="align-middle">{{ $product->nama }}</td>
+            <td class="align-middle">{{ $product->harga_beli }}</td>
+            <td class="align-middle">{{ $product->harga_jual }}</td>
+            <td class="align-middle">{{ $product->stok }}</td>
 
-            <td class="d-flex gap-1">
+            <!-- PERBAIKAN: d-flex dipindahkan ke dalam div baru agar tombol sejajar lurus di tengah baris -->
+            <td class="align-middle">
+                <div class="d-flex gap-1 align-items-center">
 
-                @can('update', $product)
-                <a href="{{ route('produk.edit', $product) }}" class="btn btn-warning">
-                    Edit
-                </a>
-                @endcan
+                    @can('update', $product)
+                    <a href="{{ route('produk.edit', $product) }}" class="btn btn-warning">
+                        Edit
+                    </a>
+                    @endcan
 
-                @can('delete', $product)
-                <form action="{{ route('produk.destroy', $product) }}" method="POST" class="d-inline">
-                    @csrf
-                    @method('DELETE')
+                    @can('delete', $product)
+                    <form action="{{ route('produk.destroy', $product) }}" method="POST" class="d-inline mb-0">
+                        @csrf
+                        @method('DELETE')
 
-                    <button
-                        class="btn btn-danger"
-                        onclick="return confirm('Apakah anda yakin akan menghapus produk ini?')"
-                    >
-                        Hapus
-                    </button>
+                        <!-- PERBAIKAN: Ditambahkan type="submit" agar perintah hapus terkirim ke server -->
+                        <button
+                            type="submit"
+                            class="btn btn-danger"
+                            onclick="return confirm('Apakah anda yakin akan menghapus produk ini?')"
+                        >
+                            Hapus
+                        </button>
 
-                </form>
-                @endcan
+                    </form>
+                    @endcan
 
+                </div>
             </td>
 
         </tr>

@@ -51,10 +51,10 @@
 
         <tr>
 
-            <th scope="row"><?php echo e($products->firstItem() + $loop->index); ?></th>
-            <td><?php echo e($product->user?->name ?? '-'); ?></td>
+            <th scope="row" class="align-middle"><?php echo e($products->firstItem() + $loop->index); ?></th>
+            <td class="align-middle"><?php echo e($product->user?->name ?? '-'); ?></td>
 
-            <td>
+            <td class="align-middle">
                 <img
                     src="<?php echo e(asset('storage/' . $product->foto)); ?>"
                     width="100"
@@ -62,34 +62,39 @@
                 >
             </td>
 
-            <td><?php echo e($product->nama); ?></td>
-            <td><?php echo e($product->harga_beli); ?></td>
-            <td><?php echo e($product->harga_jual); ?></td>
-            <td><?php echo e($product->stok); ?></td>
+            <td class="align-middle"><?php echo e($product->nama); ?></td>
+            <td class="align-middle"><?php echo e($product->harga_beli); ?></td>
+            <td class="align-middle"><?php echo e($product->harga_jual); ?></td>
+            <td class="align-middle"><?php echo e($product->stok); ?></td>
 
-            <td class="d-flex gap-1">
+            <!-- PERBAIKAN: d-flex dipindahkan ke dalam div baru agar tombol sejajar lurus di tengah baris -->
+            <td class="align-middle">
+                <div class="d-flex gap-1 align-items-center">
 
-                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('update', $product)): ?>
-                <a href="<?php echo e(route('produk.edit', $product)); ?>" class="btn btn-warning">
-                    Edit
-                </a>
-                <?php endif; ?>
+                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('update', $product)): ?>
+                    <a href="<?php echo e(route('produk.edit', $product)); ?>" class="btn btn-warning">
+                        Edit
+                    </a>
+                    <?php endif; ?>
 
-                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('delete', $product)): ?>
-                <form action="<?php echo e(route('produk.destroy', $product)); ?>" method="POST" class="d-inline">
-                    <?php echo csrf_field(); ?>
-                    <?php echo method_field('DELETE'); ?>
+                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('delete', $product)): ?>
+                    <form action="<?php echo e(route('produk.destroy', $product)); ?>" method="POST" class="d-inline mb-0">
+                        <?php echo csrf_field(); ?>
+                        <?php echo method_field('DELETE'); ?>
 
-                    <button
-                        class="btn btn-danger"
-                        onclick="return confirm('Apakah anda yakin akan menghapus produk ini?')"
-                    >
-                        Hapus
-                    </button>
+                        <!-- PERBAIKAN: Ditambahkan type="submit" agar perintah hapus terkirim ke server -->
+                        <button
+                            type="submit"
+                            class="btn btn-danger"
+                            onclick="return confirm('Apakah anda yakin akan menghapus produk ini?')"
+                        >
+                            Hapus
+                        </button>
 
-                </form>
-                <?php endif; ?>
+                    </form>
+                    <?php endif; ?>
 
+                </div>
             </td>
 
         </tr>

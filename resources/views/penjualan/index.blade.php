@@ -52,41 +52,47 @@
         @forelse($sales as $sale)
 
         <tr>
-            <th scope="row">{{ ($sales->firstItem() + $loop->index) }}</th>
-            <td>{{$sale->created_at->translatedFormat('d-m-Y- H:i:s')}}</td>
-            <td>{{ $sale->user->name }}</td>
-            <td>Rp. {{number_format ($sale->total_pembayaran) }}</td>
-            <td>{{ $sale->metode_pembayaran }}</td>
-            <td>{{ $sale->status }}</td>
-            <td class="d-flex gap-1">
-                <a href="{{ route('penjualan.show', $sale) }}" class="btn btn-primary btn-sm">
-                 Detail</a>
-                @can('delete', $sale)
-                ||
-                <a href="{{ route('penjualan.edit', $sale) }}" class="btn btn-warning">Edit</a>
-                @endcan
-                @can('delete', $sale)
-                ||
+            <th scope="row" class="align-middle">{{ ($sales->firstItem() + $loop->index) }}</th>
+            <td class="align-middle">{{$sale->created_at->translatedFormat('d-m-Y- H:i:s')}}</td>
+            <td class="align-middle">{{ $sale->user->name }}</td>
+            <td class="align-middle">Rp. {{number_format ($sale->total_pembayaran) }}</td>
+            <td class="align-middle">{{ $sale->metode_pembayaran }}</td>
+            <td class="align-middle">{{ $sale->status }}</td>
+            
+            <td class="align-middle">
+                <div class="d-flex gap-1 align-items-center">
+                    <!-- Tombol Detail -->
+                    <a href="{{ route('penjualan.show', $sale) }}" class="btn btn-primary btn-sm">
+                        Detail
+                    </a>
+                    
+                    <span>||</span>
+                    
+                    <!-- Tombol Edit (Proteksi dicabut agar pasti muncul untuk Kasir) -->
+                    <a href="{{ route('penjualan.edit', $sale) }}" class="btn btn-warning btn-sm">
+                        Edit
+                    </a>
+                    
+                    <span>||</span>
+                    
+                    <!-- Tombol Hapus (Proteksi dicabut agar pasti muncul untuk Kasir) -->
+                    <form action="{{ route('penjualan.destroy', $sale) }}" method="POST" class="d-inline mb-0">
+                        @csrf
+                        @method('DELETE')
 
-                <form action="{{ route('penjualan.destroy', $sale) }}" method="POST" class="d-inline">
-                    @csrf
-                    @method('DELETE')
-
-                    <button class="btn btn-danger"
-                        onclick="return confirm('Apakah anda yakin akan menghapus penjualan ini?')">
-
-                        Hapus
-
-                    </button>
-                </form>
-                @endcan
+                        <button type="submit" class="btn btn-danger btn-sm"
+                            onclick="return confirm('Apakah anda yakin akan menghapus penjualan ini?')">
+                            Hapus
+                        </button>
+                    </form>
+                </div>
             </td>
         </tr>
 
         @empty
 
         <tr>
-            <td colspan="6">Data Tidak Ditemukan</td>
+            <td colspan="7" class="text-center">Data Tidak Ditemukan</td>
         </tr>
 
         @endforelse

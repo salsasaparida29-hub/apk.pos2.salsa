@@ -3,6 +3,7 @@
 @section('title', 'POS')
 
 @section('content')
+@include('layouts.navbar')
 
 @if(session('errors'))
     <div class="alert alert-danger">

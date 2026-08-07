@@ -51,41 +51,47 @@
         <?php $__empty_1 = true; $__currentLoopData = $sales; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $sale): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
 
         <tr>
-            <th scope="row"><?php echo e(($sales->firstItem() + $loop->index)); ?></th>
-            <td><?php echo e($sale->created_at->translatedFormat('d-m-Y- H:i:s')); ?></td>
-            <td><?php echo e($sale->user->name); ?></td>
-            <td>Rp. <?php echo e(number_format ($sale->total_pembayaran)); ?></td>
-            <td><?php echo e($sale->metode_pembayaran); ?></td>
-            <td><?php echo e($sale->status); ?></td>
-            <td class="d-flex gap-1">
-                <a href="<?php echo e(route('penjualan.show', $sale)); ?>" class="btn btn-primary btn-sm">
-                 Detail</a>
-                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('delete', $sale)): ?>
-                ||
-                <a href="<?php echo e(route('penjualan.edit', $sale)); ?>" class="btn btn-warning">Edit</a>
-                <?php endif; ?>
-                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('delete', $sale)): ?>
-                ||
+            <th scope="row" class="align-middle"><?php echo e(($sales->firstItem() + $loop->index)); ?></th>
+            <td class="align-middle"><?php echo e($sale->created_at->translatedFormat('d-m-Y- H:i:s')); ?></td>
+            <td class="align-middle"><?php echo e($sale->user->name); ?></td>
+            <td class="align-middle">Rp. <?php echo e(number_format ($sale->total_pembayaran)); ?></td>
+            <td class="align-middle"><?php echo e($sale->metode_pembayaran); ?></td>
+            <td class="align-middle"><?php echo e($sale->status); ?></td>
+            
+            <td class="align-middle">
+                <div class="d-flex gap-1 align-items-center">
+                    <!-- Tombol Detail -->
+                    <a href="<?php echo e(route('penjualan.show', $sale)); ?>" class="btn btn-primary btn-sm">
+                        Detail
+                    </a>
+                    
+                    <span>||</span>
+                    
+                    <!-- Tombol Edit (Proteksi dicabut agar pasti muncul untuk Kasir) -->
+                    <a href="<?php echo e(route('penjualan.edit', $sale)); ?>" class="btn btn-warning btn-sm">
+                        Edit
+                    </a>
+                    
+                    <span>||</span>
+                    
+                    <!-- Tombol Hapus (Proteksi dicabut agar pasti muncul untuk Kasir) -->
+                    <form action="<?php echo e(route('penjualan.destroy', $sale)); ?>" method="POST" class="d-inline mb-0">
+                        <?php echo csrf_field(); ?>
+                        <?php echo method_field('DELETE'); ?>
 
-                <form action="<?php echo e(route('penjualan.destroy', $sale)); ?>" method="POST" class="d-inline">
-                    <?php echo csrf_field(); ?>
-                    <?php echo method_field('DELETE'); ?>
-
-                    <button class="btn btn-danger"
-                        onclick="return confirm('Apakah anda yakin akan menghapus penjualan ini?')">
-
-                        Hapus
-
-                    </button>
-                </form>
-                <?php endif; ?>
+                        <button type="submit" class="btn btn-danger btn-sm"
+                            onclick="return confirm('Apakah anda yakin akan menghapus penjualan ini?')">
+                            Hapus
+                        </button>
+                    </form>
+                </div>
             </td>
         </tr>
 
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
 
         <tr>
-            <td colspan="6">Data Tidak Ditemukan</td>
+            <td colspan="7" class="text-center">Data Tidak Ditemukan</td>
         </tr>
 
         <?php endif; ?>
