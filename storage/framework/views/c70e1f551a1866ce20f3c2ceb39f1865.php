@@ -32,14 +32,14 @@
                 </form>
             </div>
             <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                
+    
                 <form method="POST" action="<?php echo e(route('itempenjualan.store')); ?>" class="row mb-2">
                     <?php echo csrf_field(); ?>
                     <input type="hidden" name="penjualan_id" value="<?php echo e($sale->id); ?>">
                     <input type="hidden" name="product_id" value="<?php echo e($product->id); ?>">
 
                     <div class="col-7">
-                        
+                     
                         <button type="submit" class="btn btn-outline-primary w-100 text-start p-2">
                             <div class="d-flex align-items-center gap-2">
                                 <img src="<?php echo e(asset('storage/' . $product->foto)); ?>"
@@ -61,7 +61,7 @@
                     </div>
 
                     <div class="col-2">
-                        
+                     
                         <button type="submit" class="btn btn-primary w-100">+</button>
                     </div>
                 </form>
@@ -130,13 +130,11 @@
                     <option value="CASH" <?php echo e($sale->metode_pembayaran === 'CASH' ? 'selected' : ''); ?>>Cash</option>
                     <option value="QRIS" <?php echo e($sale->metode_pembayaran === 'QRIS' ? 'selected' : ''); ?>>QRIS</option>
                 </select>
-                
+            
                 <button type="submit" class="btn btn-success w-100">
                     Selesaikan Transaksi 
                 </button>
             </form>
-            
-            
             <form action="<?php echo e(route('penjualan.destroy', $sale->id)); ?>"
                 method="POST"
                 class="mt-2"

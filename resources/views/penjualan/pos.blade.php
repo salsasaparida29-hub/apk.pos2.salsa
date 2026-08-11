@@ -32,14 +32,14 @@
                 </form>
             </div>
             @foreach ($products as $product)
-                {{-- Diperbaiki: Menyesuaikan route store item penjualan sesuai standard penamaan camelCase / lowercase --}}
+    
                 <form method="POST" action="{{ route('itempenjualan.store') }}" class="row mb-2">
                     @csrf
                     <input type="hidden" name="penjualan_id" value="{{ $sale->id }}">
                     <input type="hidden" name="product_id" value="{{ $product->id }}">
 
                     <div class="col-7">
-                        {{-- DIUBAH: Menghapus class disabled agar produk tetap bisa diklik saat mode edit transaksi COMPLETED --}}
+                     
                         <button type="submit" class="btn btn-outline-primary w-100 text-start p-2">
                             <div class="d-flex align-items-center gap-2">
                                 <img src="{{ asset('storage/' . $product->foto) }}"
@@ -61,7 +61,7 @@
                     </div>
 
                     <div class="col-2">
-                        {{-- DIUBAH: Menghapus class disabled agar tombol + bisa merespons klik --}}
+                     
                         <button type="submit" class="btn btn-primary w-100">+</button>
                     </div>
                 </form>
@@ -130,13 +130,11 @@
                     <option value="CASH" {{ $sale->metode_pembayaran === 'CASH' ? 'selected' : '' }}>Cash</option>
                     <option value="QRIS" {{ $sale->metode_pembayaran === 'QRIS' ? 'selected' : '' }}>QRIS</option>
                 </select>
-                {{-- DIUBAH: Menghapus pemblokiran class disabled agar transaksi bisa diupdate ulang --}}
+            
                 <button type="submit" class="btn btn-success w-100">
                     Selesaikan Transaksi 
                 </button>
             </form>
-            
-            {{-- DIUBAH: Menghapus penutup @can('delete') agar tombol Batal Transaksi dipaksa muncul dan aktif --}}
             <form action="{{ route('penjualan.destroy', $sale->id) }}"
                 method="POST"
                 class="mt-2"

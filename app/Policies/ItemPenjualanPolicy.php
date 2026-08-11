@@ -15,3 +15,4 @@ class ItemPenjualanPolicy
         return $user->role->name === 'admin';
     }
 }
+    
