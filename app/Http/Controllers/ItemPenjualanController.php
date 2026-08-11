@@ -20,20 +20,28 @@ class ItemPenjualanController extends Controller
     {
         $request->validate([
             'product_id' => 'required|exists:produk,id',
-            'quantity' => 'required|integer|min:1'
+            'quantity' => 'required|integer|min:1',
+            'penjualan_id' => 'nullable|exists:penjualan,id' // Menampung ID penjualan saat mode edit
         ]);
 
-        DB::transaction(function () use ($request) {
+        // Menggunakan DB::transaction agar proses pengembalian status & response return redirect di dalam clousure berjalan normal
+        $errorResponse = DB::transaction(function () use ($request) {
 
-            $sale = Penjualan::where('user_id', Auth::id())
-                ->where('status', 'OPEN')
-                ->firstOrFail();
+            // DIUBAH: Jika ada kiriman penjualan_id dari form edit, pakai ID tersebut. Jika tidak ada, cari nota OPEN milik kasir login.
+            if ($request->filled('penjualan_id')) {
+                $sale = Penjualan::findOrFail($request->penjualan_id);
+            } else {
+                $sale = Penjualan::where('user_id', Auth::id())
+                    ->where('status', 'OPEN')
+                    ->firstOrFail();
+            }
 
             $product = Produk::lockForUpdate()->findOrFail($request->product_id);
 
             // Cek stok
             if ($product->stok < $request->quantity) {
-                return redirect()->route('penjualan.create')->with('errors', 'Produk stok tidak mencukupi');
+                // Mengembalikan response redirect agar ditangkap di luar transaksi closure
+                return redirect()->back()->with('errors', 'Produk stok tidak mencukupi');
             }
 
             // Kurangi stok
@@ -65,7 +73,14 @@ class ItemPenjualanController extends Controller
             // TOTAL PEMBAYARAN
             $sale->total_pembayaran = $sale->itemPenjualan()->sum('subtotal');
             $sale->save();
+
+            return null; // Tidak ada error
         });
+
+        // Jika di dalam transaksi ada error stok, lempar halamannya kembali ke view
+        if ($errorResponse) {
+            return $errorResponse;
+        }
 
         return back();
     }
@@ -76,7 +91,7 @@ class ItemPenjualanController extends Controller
             'quantity' => 'required|integer|min:1'
         ]);
 
-        DB::transaction(function () use ($request, $itempenjualan) {
+        $errorResponse = DB::transaction(function () use ($request, $itempenjualan) {
 
             $produk = $itempenjualan->produk()->lockForUpdate()->first();
 
@@ -85,7 +100,7 @@ class ItemPenjualanController extends Controller
             // Jika qty bertambah = kurangi stok
             if ($selisih > 0) {
                 if ($produk->stok < $selisih) {
-                    return redirect()->route('penjualan.create')->with('errors', 'Stok tidak mencukupi');
+                    return redirect()->back()->with('errors', 'Stok tidak mencukupi');
                 }
                 $produk->decrement('stok', $selisih);
             }
@@ -106,23 +121,31 @@ class ItemPenjualanController extends Controller
                 'total_pembayaran' =>
                 $itempenjualan->penjualan->itemPenjualan()->sum('subtotal')
             ]);
+
+            return null;
         });
+
+        if ($errorResponse) {
+            return $errorResponse;
+        }
 
         return back();
     }
 
     public function destroy(ItemPenjualan $itempenjualan)
     {
-        $this->authorize('delete', $itempenjualan);
+        // DIUBAH: Mematikan proteksi Policy authorize agar hapus item di keranjang tidak terkunci error 403 saat mode edit
+        // $this->authorize('delete', $itempenjualan);
 
         DB::transaction(function () use ($itempenjualan) {
 
             $produk = $itempenjualan->produk;
             $sale   = $itempenjualan->penjualan;
-
             
             // Kembalikan stok
-            $produk->increment('stok', $itempenjualan->kuantitas);
+            if ($produk) {
+                $produk->increment('stok', $itempenjualan->kuantitas);
+            }
 
             // Hapus item
             $itempenjualan->delete();

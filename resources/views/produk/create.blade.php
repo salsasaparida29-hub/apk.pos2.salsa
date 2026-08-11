@@ -4,7 +4,7 @@
 
 @section('content')
 
-@include('layouts.navbar')
+
 <h4>Tambah Produk</h4>
 
 <form action="{{ route('produk.store')}}"

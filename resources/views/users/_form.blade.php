@@ -64,6 +64,7 @@
 
 <button class="btn btn-success">Simpan</button>
 
-<a href="{{ route('admin.users.create') }}" class="btn btn-secondary">
+<!-- JALUR RUTE DIBAWAH INI SUDAH DISESUAIKAN KEMBALI KE HALAMAN UTAMA TABEL USER -->
+<a href="{{ route('admin.users') }}" class="btn btn-secondary">
     Kembali
 </a>

@@ -69,7 +69,7 @@
             <td class="align-middle">{{ $product->harga_jual }}</td>
             <td class="align-middle">{{ $product->stok }}</td>
 
-            <!-- PERBAIKAN: d-flex dipindahkan ke dalam div baru agar tombol sejajar lurus di tengah baris -->
+           
             <td class="align-middle">
                 <div class="d-flex gap-1 align-items-center">
 
@@ -84,7 +84,7 @@
                         @csrf
                         @method('DELETE')
 
-                        <!-- PERBAIKAN: Ditambahkan type="submit" agar perintah hapus terkirim ke server -->
+                       
                         <button
                             type="submit"
                             class="btn btn-danger"

@@ -67,7 +67,7 @@
             <td class="align-middle"><?php echo e($product->harga_jual); ?></td>
             <td class="align-middle"><?php echo e($product->stok); ?></td>
 
-            <!-- PERBAIKAN: d-flex dipindahkan ke dalam div baru agar tombol sejajar lurus di tengah baris -->
+           
             <td class="align-middle">
                 <div class="d-flex gap-1 align-items-center">
 
@@ -82,7 +82,7 @@
                         <?php echo csrf_field(); ?>
                         <?php echo method_field('DELETE'); ?>
 
-                        <!-- PERBAIKAN: Ditambahkan type="submit" agar perintah hapus terkirim ke server -->
+                       
                         <button
                             type="submit"
                             class="btn btn-danger"

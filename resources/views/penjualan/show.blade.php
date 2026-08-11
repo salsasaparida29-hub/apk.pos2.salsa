@@ -1,16 +1,16 @@
+@extends('layouts.app')
 
-
-<?php $__env->startSection('content'); ?>
-
+@section('content')
+{{-- Menggunakan container-fluid agar tata letak melebar otomatis menyesuaikan lebar layar laptop --}}
 <div class="container-fluid px-4 mt-3">
     
     <!-- Header Halaman Minimalis Modern -->
     <div class="d-flex justify-content-between align-items-center pb-3 mb-4 border-bottom">
         <div>
             <h4 class="fw-bold mb-1 text-secondary">Detail Transaksi Penjualan</h4>
-            <span class="badge bg-light text-dark border">ID Nota: #<?php echo e($penjualan->id); ?></span>
+            <span class="badge bg-light text-dark border">ID Nota: #{{ $penjualan->id }}</span>
         </div>
-        <a href="<?php echo e(route('penjualan.index')); ?>" class="btn btn-sm btn-outline-secondary px-3">
+        <a href="{{ route('penjualan.index') }}" class="btn btn-sm btn-outline-secondary px-3">
             <i class="bi bi-arrow-left"></i> Kembali ke Halaman Penjualan
         </a>
     </div>
@@ -24,18 +24,18 @@
                     <h6 class="card-subtitle mb-3 text-muted fw-bold text-uppercase" style="font-size: 12px; letter-spacing: 0.5px;">Ringkasan Nota</h6>
                     <div class="row g-2">
                         <div class="col-sm-4 text-muted">Nama Kasir</div>
-                        <div class="col-sm-8 fw-semibold">: <?php echo e($penjualan->user->name ?? 'Tidak Diketahui'); ?></div>
+                        <div class="col-sm-8 fw-semibold">: {{ $penjualan->user->name ?? 'Tidak Diketahui' }}</div>
                         
                         <div class="col-sm-4 text-muted">Waktu Transaksi</div>
-                        <div class="col-sm-8">: <?php echo e($penjualan->created_at->format('d M Y - H:i')); ?> WIB</div>
+                        <div class="col-sm-8">: {{ $penjualan->created_at->format('d M Y - H:i') }} WIB</div>
                         
                         <div class="col-sm-4 text-muted">Status Nota</div>
                         <div class="col-sm-8">: 
-                            <?php if($penjualan->status === 'COMPLETED'): ?>
+                            @if($penjualan->status === 'COMPLETED')
                                 <span class="badge bg-success-subtle text-success border border-success-subtle py-1 px-2">Selesai</span>
-                            <?php else: ?>
-                                <span class="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle py-1 px-2"><?php echo e($penjualan->status); ?></span>
-                            <?php endif; ?>
+                            @else
+                                <span class="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle py-1 px-2">{{ $penjualan->status }}</span>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -48,11 +48,10 @@
                 <div class="card-body d-flex flex-column justify-content-center">
                     <h6 class="card-subtitle mb-2 text-muted fw-bold text-uppercase" style="font-size: 12px; letter-spacing: 0.5px;">Total Pembayaran</h6>
                     <h1 class="text-success fw-bolder mb-2" style="font-size: calc(1.5rem + 1vw);">
-                        Rp <?php echo e(number_format($penjualan->total_pembayaran, 0, ',', '.')); ?>
-
+                        Rp {{ number_format($penjualan->total_pembayaran, 0, ',', '.') }}
                     </h1>
                     <div class="text-muted border-top pt-2" style="font-size: 13px;">
-                        Metode Pembayaran: <span class="fw-bold text-dark"><?php echo e($penjualan->metode_pembayaran); ?></span>
+                        Metode Pembayaran: <span class="fw-bold text-dark">{{ $penjualan->metode_pembayaran }}</span>
                     </div>
                 </div>
             </div>
@@ -77,55 +76,52 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $__empty_1 = true; $__currentLoopData = $penjualan->itemPenjualan; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                        @forelse($penjualan->itemPenjualan as $index => $item)
                         <tr>
-                            <td class="text-center py-3 text-muted"><?php echo e($index + 1); ?></td>
+                            <td class="text-center py-3 text-muted">{{ $index + 1 }}</td>
                             <td>
-                                <span class="fw-semibold text-dark d-block"><?php echo e($item->produk->nama ?? $item->produk->nama_produk ?? 'Produk Tanpa Nama'); ?></span>
-                                <small class="text-muted" style="font-size: 11px;">ID Produk: <?php echo e($item->produk->id ?? $item->produk_id ?? '-'); ?></small>
+                                <span class="fw-semibold text-dark d-block">{{ $item->produk->nama ?? $item->produk->nama_produk ?? 'Produk Tanpa Nama' }}</span>
+                                <small class="text-muted" style="font-size: 11px;">ID Produk: {{ $item->produk->id ?? $item->produk_id ?? '-' }}</small>
                             </td>
                             <td class="text-end text-secondary">
-                                <?php
+                                @php
                                     // Hitung otomatis jika harga bernilai 0 di tabel item penjualan
                                     $hargaSatuan = $item->harga ?? $item->harga_satuan ?? $item->produk->harga ?? $item->produk->harga_jual ?? 0;
                                     if($hargaSatuan == 0 && ($item->subtotal > 0 && ($item->kuantitas ?? $item->jumlah ?? $item->qty) > 0)) {
                                         $hargaSatuan = $item->subtotal / ($item->kuantitas ?? $item->jumlah ?? $item->qty);
                                     }
-                                ?>
-                                Rp <?php echo e(number_format($hargaSatuan, 0, ',', '.')); ?>
-
+                                @endphp
+                                Rp {{ number_format($hargaSatuan, 0, ',', '.') }}
                             </td>
                             <td class="text-center fw-medium text-dark">
-                                <?php echo e($item->kuantitas ?? $item->jumlah ?? $item->qty ?? 0); ?> pcs
+                                {{ $item->kuantitas ?? $item->jumlah ?? $item->qty ?? 0 }} pcs
                             </td>
                             <td class="text-end fw-bold text-dark pe-4">
-                                <?php
+                                @php
                                     $qty = $item->kuantitas ?? $item->jumlah ?? $item->qty ?? 0;
                                     $subtotal = $item->subtotal ?? ($hargaSatuan * $qty);
-                                ?>
-                                Rp <?php echo e(number_format($subtotal, 0, ',', '.')); ?>
-
+                                @endphp
+                                Rp {{ number_format($subtotal, 0, ',', '.') }}
                             </td>
                         </tr>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                        @empty
                         <tr>
                             <td colspan="5" class="text-center py-4 text-muted">Tidak ada rincian produk untuk transaksi ini.</td>
                         </tr>
-                        <?php endif; ?>
+                        @endforelse
                     </tbody>
                     <tfoot class="table-light fw-semibold text-secondary">
                         <tr class="border-top">
                             <td colspan="3" class="text-end py-3">Jumlah Keseluruhan Item:</td>
                             <td class="text-center text-dark fw-bold">
-                                <?php echo e($penjualan->itemPenjualan->sum('kuantitas') ?: $penjualan->itemPenjualan->sum('jumlah') ?: $penjualan->itemPenjualan->sum('qty') ?: 0); ?> Pcs
+                                {{ $penjualan->itemPenjualan->sum('kuantitas') ?: $penjualan->itemPenjualan->sum('jumlah') ?: $penjualan->itemPenjualan->sum('qty') ?: 0 }} Pcs
                             </td>
                             <td></td>
                         </tr>
                         <tr class="table-group-divider border-top-0">
                             <td colspan="4" class="text-end text-dark py-3 fw-bold">Total Pembayaran Akhir:</td>
                             <td class="text-end text-success fs-5 fw-bolder pe-4">
-                                Rp <?php echo e(number_format($penjualan->total_pembayaran, 0, ',', '.')); ?>
-
+                                Rp {{ number_format($penjualan->total_pembayaran, 0, ',', '.') }}
                             </td>
                         </tr>
                     </tfoot>
@@ -135,6 +131,4 @@
     </div>
 
 </div>
-<?php $__env->stopSection(); ?>
-
-<?php echo $__env->make('layouts.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\Users\rpspp\apk.pos.salsa\resources\views/penjualan/show.blade.php ENDPATH**/ ?>
+@endsection

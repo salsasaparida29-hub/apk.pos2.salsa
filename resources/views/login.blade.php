@@ -127,7 +127,7 @@
             <form method="POST" action="{{ route('auth') }}">
                 @csrf
                 <div class="mb-3">
-                    <label class="form-label">Email ID</label>
+                    <label class="form-label">Email </label>
                     <input type="email" name="email" value="{{ old('email') }}" class="form-control" placeholder="" required autofocus>
                 </div>
                 <div class="mb-3">
@@ -140,7 +140,7 @@
                         <input class="form-check-input" type="checkbox" name="remember" id="remember">
                         <label class="form-check-label" for="remember">Remember me</label>
                     </div>
-                    <a href="#" class="forgot-link">Forgot Password?</a>
+                    <a href="#" class="forgot-link"></a>
                 </div>
 
                 <button type="submit" class="btn btn-indigo w-100 rounded-2 py-2 fw-semibold">Login</button>

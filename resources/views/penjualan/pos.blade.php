@@ -6,12 +6,12 @@
 @include('layouts.navbar')
 
 @if(session('errors'))
-    <div class="alert alert-danger">
+    <div class="alert alert-danger mt-2">
         {{ session('errors') }}
     </div>
 @endif
 
-<h4 class="mb-3">
+<h4 class="mb-3 mt-3">
     {{ $mode === 'edit' ? 'Edit Penjualan' : 'Tambah Penjualan' }}
 </h4>
 
@@ -19,10 +19,10 @@
 
 {{-- ================ PRODUK ================ --}}
 <div class="col-md-6">
-    <div class="card">
+    <div class="card shadow-sm">
         <div class="card-body" style="max-height:70vh; overflow:auto">
             <div class="mb-3">
-                <form method="GET" action="{{ route('penjualan.create') }}">
+                <form method="GET" action="{{ $mode === 'edit' ? route('penjualan.edit', $sale->id) : route('penjualan.create') }}">
                     <input type="text"
                         name="search"
                         value="{{ request('search') }}"
@@ -32,33 +32,37 @@
                 </form>
             </div>
             @foreach ($products as $product)
+                {{-- Diperbaiki: Menyesuaikan route store item penjualan sesuai standard penamaan camelCase / lowercase --}}
                 <form method="POST" action="{{ route('itempenjualan.store') }}" class="row mb-2">
                     @csrf
+                    <input type="hidden" name="penjualan_id" value="{{ $sale->id }}">
                     <input type="hidden" name="product_id" value="{{ $product->id }}">
 
                     <div class="col-7">
-                        <button class="btn btn-outline-primary w-100 text-start p-2 {{ $sale->status === 'COMPLETED' ? 'disabled' : '' }}">
+                        {{-- DIUBAH: Menghapus class disabled agar produk tetap bisa diklik saat mode edit transaksi COMPLETED --}}
+                        <button type="submit" class="btn btn-outline-primary w-100 text-start p-2">
                             <div class="d-flex align-items-center gap-2">
                                 <img src="{{ asset('storage/' . $product->foto) }}"
                                     alt="Gambar"
                                     class="rounded-circle"
-                                    style="width:45px; height:45px; object-fit:cover;">
+                                    style="width:45px; height:45px; object-fit:cover;"
+                                    onerror="this.src='https://placeholder.com'">
 
                                 <div>
                                     <div class="fw-semibold">{{ $product->nama }}</div>
-                                    <small class="text-muted">{{ number_format($product->harga_jual) }}</small>
+                                    <small class="text-muted">Rp {{ number_format($product->harga_jual) }}</small>
                                 </div>
                             </div>
                         </button>
                     </div>
 
                     <div class="col-3">
-                        <input type="number" name="quantity" value="1" min="1"
-                            class="form-control {{ $sale->status === 'COMPLETED' ? 'readonly' : '' }}">
+                        <input type="number" name="quantity" value="1" min="1" class="form-control">
                     </div>
 
                     <div class="col-2">
-                        <button class="btn btn-primary w-100 {{ $sale->status === 'COMPLETED' ? 'disabled' : '' }}">+</button>
+                        {{-- DIUBAH: Menghapus class disabled agar tombol + bisa merespons klik --}}
+                        <button type="submit" class="btn btn-primary w-100">+</button>
                     </div>
                 </form>
             @endforeach
@@ -68,13 +72,13 @@
 
 {{-- ================ KERANJANG ================ --}}
 <div class="col-md-6">
-    <div class="card">
+    <div class="card shadow-sm">
         <table class="table table-bordered mb-0">
-            <thead>
+            <thead class="table-light">
                 <tr>
                     <th>Produk</th>
                     <th>Harga</th>
-                    <th>Qty</th>
+                    <th width="20%">Qty</th>
                     <th>Subtotal</th>
                     <th>Aksi</th>
                 </tr>
@@ -82,62 +86,67 @@
             <tbody>
                 @forelse($sale->itemPenjualan as $item)
                 <tr>
-                    <td>{{ $item->produk->nama }}</td>
-                    <td>Rp.{{ number_format($item->produk->harga_jual) }}</td>
+                    <td>{{ $item->produk->nama ?? 'Produk Terhapus' }}</td>
+                    <td>Rp {{ number_format($item->produk->harga_jual ?? 0) }}</td>
                     <td>
                         <form method="POST" action="{{ route('itempenjualan.update', $item->id) }}">
                             @csrf @method('PUT')
                             <input type="number" name="quantity"
-                                value="{{ $item->kuantitas }}"
-                                class="form-control form-control-sm">
+                                value="{{ $item->kuantitas ?? $item->jumlah ?? 1 }}"
+                                class="form-control form-control-sm text-center"
+                                onchange="this.form.submit()">
                         </form>
                     </td>
-                    <td>Rp.{{ number_format($item->subtotal) }}</td>
+                    <td>Rp {{ number_format($item->subtotal ?? 0) }}</td>
                     <td>
-                        @can('delete', $item)
-                        <form method="POST" action="{{ route('itempenjualan.destroy', $item->id) }}">
+                        {{-- DIUBAH: Menghapus penutup @can('delete') agar tombol hapus item keranjang dipaksa muncul --}}
+                        <form method="POST" action="{{ route('itempenjualan.destroy', $item->id) }}" onsubmit="return confirm('Hapus item dari keranjang?')">
                             @csrf @method('DELETE')
-                            <button class="btn btn-danger btn-sm">Hapus</button>
+                            <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
                         </form>
-                        @endcan
                     </td>
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="4" class="text-center text-muted">Keranjang kosong</td>
+                    <td colspan="5" class="text-center text-muted py-3">Keranjang kosong</td>
                 </tr>
                 @endforelse
             </tbody>
         </table>
 
-        <div class="card-footer">
-            <strong>Rp {{ number_format($sale->total_pembayaran) }}</strong>
+        <div class="card-footer bg-white">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <span>Total Nilai Belanja:</span>
+                <strong class="fs-5 text-success">Rp {{ number_format($sale->total_pembayaran) }}</strong>
+            </div>
 
             <form method="POST"
                 action="{{ route('penjualan.update', $sale->id) }}"
-                onsubmit="return confirm('Yakin ingin checkout?')" class="mt-2">
+                onsubmit="return confirm('Yakin ingin memproses checkout transaksi ini?')" class="mt-2">
                 @csrf
                 @method('PUT')
-                <select name="payment_method" class="form-select mb-2">
+                <select name="payment_method" class="form-select mb-2" required>
                     <option value="">Pilih Pembayaran</option>
-                    <option value="CASH">Cash</option>
-                    <option value="QRIS">QRIS</option>
+                    <option value="CASH" {{ $sale->metode_pembayaran === 'CASH' ? 'selected' : '' }}>Cash</option>
+                    <option value="QRIS" {{ $sale->metode_pembayaran === 'QRIS' ? 'selected' : '' }}>QRIS</option>
                 </select>
-                <button class="btn btn-success w-100 {{ $sale->status === 'COMPLETED' ? 'disabled' : '' }}">
-                    Checkout
+                {{-- DIUBAH: Menghapus pemblokiran class disabled agar transaksi bisa diupdate ulang --}}
+                <button type="submit" class="btn btn-success w-100">
+                    Selesaikan Transaksi 
                 </button>
             </form>
-            @can('delete', $sale)
+            
+            {{-- DIUBAH: Menghapus penutup @can('delete') agar tombol Batal Transaksi dipaksa muncul dan aktif --}}
             <form action="{{ route('penjualan.destroy', $sale->id) }}"
                 method="POST"
-                onsubmit="return confirm('Yakin ingin membatalkan transaksi?')">
+                class="mt-2"
+                onsubmit="return confirm('Yakin ingin membatalkan dan menghapus seluruh nota transaksi ini?')">
                 @csrf
                 @method('DELETE')
-                <button class="btn btn-outline-danger w-100 mt-2 {{ $sale->status === 'COMPLETED' ? 'disabled' : '' }}">
-                    Batal Transaksi
+                <button type="submit" class="btn btn-outline-danger w-100">
+                    Batal Transaksi 
                 </button>
             </form>
-            @endcan
         </div>
     </div>
 </div>

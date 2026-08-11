@@ -3,7 +3,6 @@
 @section('title', 'penjualan')
 
 @section('content')
-
 @include('layouts.navbar')
 
 @if (session('errors'))

@@ -5,7 +5,8 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <!-- HANYA MENAMBAHKAN ATRIBUT STYLE DI BAWAH INI -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="width: 100%; justify-content: center;">
         <li class="nav-item">
           <a class="nav-link <?php echo e(Request::is('dashboard') ? 'active' : ''); ?>" aria-current="page" href="<?php echo e(route('dashboard')); ?>">Dashboard</a>
         </li>
@@ -26,4 +27,5 @@
       </form>
     </div>
   </div>
-</nav><?php /**PATH C:\Users\rpspp\apk.pos.salsa\resources\views/layouts/navbar.blade.php ENDPATH**/ ?>
+</nav>
+<?php /**PATH C:\Users\rpspp\apk.pos.salsa\resources\views/layouts/navbar.blade.php ENDPATH**/ ?>
