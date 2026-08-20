@@ -1,10 +1,8 @@
-@extends('layouts.app')
+<?php $__env->startSection('title', 'Users'); ?>
 
-@section('title', 'Users')
+<?php $__env->startSection('content'); ?>
 
-@section('content')
-
-@include('layouts.navbar')
+<?php echo $__env->make('layouts.navbar', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 
 <style>
     /* 1. Tombol Create Atas - Disesuaikan dengan Aksen Ungu Indigo */
@@ -70,14 +68,14 @@
 <div class="container-fluid px-4 mt-3">
 
 <h1 class="fw-bold text-dark mb-3">Halaman Users</h1>
-<a href="{{ route('admin.users.create') }}" class="btn btn-create-purple mb-3 px-4">Create</a>
+<a href="<?php echo e(route('admin.users.create')); ?>" class="btn btn-create-purple mb-3 px-4">Create</a>
 
-<form action="{{ route('admin.users') }}" method="GET" class="mb-4">
+<form action="<?php echo e(route('admin.users')); ?>" method="GET" class="mb-4">
     <div class="input-group">
         <input
         type="text"
         name="search"
-        value="{{ request('search') }}"
+        value="<?php echo e(request('search')); ?>"
         class="form-control"
         placeholder="Search username or email"
         >
@@ -101,32 +99,32 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($users as $user)
+                    <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <tr>
-                        <td class="ps-3 py-3 fw-bold text-secondary">{{ $users->firstItem() + $loop->index }}</td>
+                        <td class="ps-3 py-3 fw-bold text-secondary"><?php echo e($users->firstItem() + $loop->index); ?></td>
                         
                         <!-- Mengubah warna teks nama pengguna menjadi gelap tegas -->
-                        <td class="fw-bold text-dark">{{ $user->name }}</td>
-                        <td class="text-secondary">{{ $user->email }}</td>
+                        <td class="fw-bold text-dark"><?php echo e($user->name); ?></td>
+                        <td class="text-secondary"><?php echo e($user->email); ?></td>
                         <td>
                             <!-- Menampilkan badge role kasir sewarna ungu muda kustom -->
-                            @if($user->role->name == 'admin' || $user->role_id == 1)
+                            <?php if($user->role->name == 'admin' || $user->role_id == 1): ?>
                                 <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-2 py-1" style="border-radius: 4px;">admin</span>
-                            @else
+                            <?php else: ?>
                                 <span class="badge px-2 py-1" style="border-radius: 4px; color: #6a5ae0 !important; background-color: #f3ebff !important; border-color: #e1d5f5 !important; border: 1px solid;">kasir</span>
-                            @endif
+                            <?php endif; ?>
                         </td>
                         <td class="text-center">
                             <div class="d-inline-flex align-items-center justify-content-center">
-                                <a href="{{ route('admin.users.edit', $user) }}" class="btn-action-edit text-decoration-none">
+                                <a href="<?php echo e(route('admin.users.edit', $user)); ?>" class="btn-action-edit text-decoration-none">
                                     Edit Akun
                                 </a>
                                 
                                 <span class="action-divider">||</span>
                                 
-                                <form action="{{ route('admin.users.destroy', $user) }}" method="POST" class="d-inline mb-0">
-                                    @csrf
-                                    @method('DELETE')
+                                <form action="<?php echo e(route('admin.users.destroy', $user)); ?>" method="POST" class="d-inline mb-0">
+                                    <?php echo csrf_field(); ?>
+                                    <?php echo method_field('DELETE'); ?>
                                     <button class="btn-action-delete border-0" onclick="return confirm('Yakin hapus user ini')">
                                         Hapus
                                     </button>
@@ -134,7 +132,7 @@
                             </div>
                         </td>
                     </tr>
-                    @endforeach
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </tbody>
             </table>
         </div>
@@ -142,8 +140,11 @@
 </div>
 
 <div class="mt-3 px-2">
-    {{ $users->links() }}
+    <?php echo e($users->links()); ?>
+
 </div>
 
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\Users\user\apk.pos2.salsa\resources\views/users/index.blade.php ENDPATH**/ ?>

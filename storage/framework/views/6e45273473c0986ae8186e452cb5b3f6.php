@@ -1,10 +1,8 @@
-@extends('layouts.app')
+<?php $__env->startSection('title','Dashboard'); ?>
 
-@section('title','Dashboard')
+<?php $__env->startSection('content'); ?>
 
-@section('content')
-
-@include('layouts.navbar')
+<?php echo $__env->make('layouts.navbar', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 
 <style>
     .card-header {
@@ -38,12 +36,12 @@
     <h1 class="mb-1">
         Ringkasan Hari Ini
         <small class="text-muted" style="font-size: 2rem;">
-            ({{ $tanggalHariIni->translatedFormat('l, d F Y') }})
+            (<?php echo e($tanggalHariIni->translatedFormat('l, d F Y')); ?>)
         </small>
     </h1>
 
     <div class="row">
-        @can('viewAny', App\Models\User::class)
+        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('viewAny', App\Models\User::class)): ?>
             <div class="col-md-12">
                 <h4 class="section-title">Today's Sales</h4>
             </div>
@@ -56,7 +54,7 @@
 
                     <div class="card-body">
                         <!-- KODE DISESUAIKAN: Angka nominal diberi warna tebal senada -->
-                        <h6 class="card-title mb-0" style="color: #6a5ae0; font-weight: 700;">Rp {{ number_format($ringkasan['total_penjualan']) }}</h6>
+                        <h6 class="card-title mb-0" style="color: #6a5ae0; font-weight: 700;">Rp <?php echo e(number_format($ringkasan['total_penjualan'])); ?></h6>
                     </div>
                 </div>
             </div>
@@ -70,7 +68,8 @@
                     <div class="card-body">
                         <!-- KODE DISESUAIKAN: Angka jumlah transaksi diberi warna tebal senada -->
                         <h6 class="card-title mb-0" style="color: #6a5ae0; font-weight: 700;">
-                            {{ $ringkasan['total_transaksi'] }}
+                            <?php echo e($ringkasan['total_transaksi']); ?>
+
                         </h6>
                     </div>
                 </div>
@@ -91,7 +90,8 @@
                     <div class="card-body">
                         <!-- KODE DISESUAIKAN: Angka kas diberi warna tebal senada -->
                         <h6 class="card-title mb-0" style="color: #6a5ae0; font-weight: 700;">
-                            Rp {{ number_format($ringkasan['total_cash']) }}
+                            Rp <?php echo e(number_format($ringkasan['total_cash'])); ?>
+
                         </h6>
                     </div>
                 </div>
@@ -106,13 +106,14 @@
                     <div class="card-body">
                         <!-- KODE DISESUAIKAN: Angka non-tunai diberi warna tebal senada -->
                         <h6 class="card-title mb-0" style="color: #6a5ae0; font-weight: 700;">
-                            Rp {{ number_format($ringkasan['total_non_tunai']) }}
+                            Rp <?php echo e(number_format($ringkasan['total_non_tunai'])); ?>
+
                         </h6>
                     </div>
                 </div>
             </div>
         </div>
-    @endcan
+    <?php endif; ?>
 
     <div class="row mt-4">
 
@@ -134,24 +135,25 @@
                 </thead>
 
                 <tbody>
-                    @forelse ($produkStokRendah as $index => $produk)
+                    <?php $__empty_1 = true; $__currentLoopData = $produkStokRendah; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $produk): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                         <tr>
-                            <td>{{ $produkStokRendah->firstItem() + $index }}</td>
-                            <td>{{ $produk->nama }}</td>
+                            <td><?php echo e($produkStokRendah->firstItem() + $index); ?></td>
+                            <td><?php echo e($produk->nama); ?></td>
                             <!-- KODE DISESUAIKAN: Angka stok rendah diberi warna merah penanda bahaya -->
-                            <td class="text-danger fw-bold">{{ $produk->stok }}</td>
+                            <td class="text-danger fw-bold"><?php echo e($produk->stok); ?></td>
                         </tr>
-                    @empty
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                         <tr>
                             <td colspan="3" class="text-center text-muted">
                                 Seluruh produk berada dalam kondisi stok aman.
                             </td>
                         </tr>
-                    @endforelse
+                    <?php endif; ?>
                 </tbody>
             </table>
 
-            {{ $produkStokRendah->links() }}
+            <?php echo e($produkStokRendah->links()); ?>
+
         </div>
 
         <!-- Produk Stok Habis -->
@@ -168,24 +170,25 @@
                 </thead>
 
                 <tbody>
-                    @forelse ($produkStokHabis as $index => $produk)
+                    <?php $__empty_1 = true; $__currentLoopData = $produkStokHabis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $produk): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                         <tr>
-                            <td>{{ $produkStokHabis->firstItem() + $index }}</td>
-                            <td>{{ $produk->nama }}</td>
+                            <td><?php echo e($produkStokHabis->firstItem() + $index); ?></td>
+                            <td><?php echo e($produk->nama); ?></td>
                             <!-- KODE DISESUAIKAN: Angka stok habis diberi warna merah tebal -->
-                            <td class="text-danger fw-bold">{{ $produk->stok }}</td>
+                            <td class="text-danger fw-bold"><?php echo e($produk->stok); ?></td>
                         </tr>
-                    @empty
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                         <tr>
                             <td colspan="3" class="text-center text-muted">
                                 Seluruh produk berada dalam kondisi stok aman.
                             </td>
                         </tr>
-                    @endforelse
+                    <?php endif; ?>
                 </tbody>
             </table>
 
-            {{ $produkStokHabis->links() }}
+            <?php echo e($produkStokHabis->links()); ?>
+
         </div>
     </div>
 
@@ -204,27 +207,29 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($produkTerlaris as $produk)
+                    <?php $__empty_1 = true; $__currentLoopData = $produkTerlaris; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $produk): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                         <tr>
-                            <td class="fw-semibold">{{ $produk->nama }}</td>
+                            <td class="fw-semibold"><?php echo e($produk->nama); ?></td>
                             
                             <!-- KODE DIBENARKAN: Memberikan warna ungu tebal pada angka stok terlaris (47 & 48) -->
-                            <td class="fw-bold" style="color: #6a5ae0;">{{ $produk->stok }} unit</td>
+                            <td class="fw-bold" style="color: #6a5ae0;"><?php echo e($produk->stok); ?> unit</td>
                             
                             <!-- KODE DIBENARKAN: Memberikan warna hijau sukses tebal pada unit terlaris yang terjual -->
-                            <td class="text-success fw-bold">{{ $produk->total_terjual }} unit</td>
+                            <td class="text-success fw-bold"><?php echo e($produk->total_terjual); ?> unit</td>
                         </tr>
-                    @empty
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                         <tr>
                             <td colspan="3" class="text-muted text-center">
                                 Seluruh produk berada dalam kondisi stok aman.
                             </td>
                         </tr>
-                    @endforelse
+                    <?php endif; ?>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\Users\user\apk.pos2.salsa\resources\views/dashboard.blade.php ENDPATH**/ ?>

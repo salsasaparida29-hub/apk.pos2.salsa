@@ -102,20 +102,22 @@
 
 <body>
 
-@if (session('status'))
+<?php if(session('status')): ?>
     <!-- Notifikasi full-width, tampil di paling atas halaman -->
     <div class="alert alert-success-custom status-banner small mb-0">
-        {{ session('status') }}
-    </div>
-@endif
+        <?php echo e(session('status')); ?>
 
-{{-- BERIKUT ADALAH TAMBAHAN KODE BARU TANPA MENGUBAH STRUKTUR ASLI ANDA --}}
-@if (session('success'))
+    </div>
+<?php endif; ?>
+
+
+<?php if(session('success')): ?>
     <!-- Notifikasi full-width warna ungu muda, pas muncul saat klik logout -->
     <div class="alert alert-purple-custom status-banner small mb-0">
-        {{ session('success') }}
+        <?php echo e(session('success')); ?>
+
     </div>
-@endif
+<?php endif; ?>
 
 <div class="login-wrapper">
 
@@ -124,19 +126,19 @@
         <div class="card-header">Login</div>
         <div class="card-body p-4 pt-2">
 
-            @if ($errors->any())
+            <?php if($errors->any()): ?>
                 <div class="alert alert-danger-custom py-2 mb-3 small rounded-3">
-                    @foreach ($errors->all() as $error)
-                        <div>{{ $error }}</div>
-                    @endforeach
+                    <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <div><?php echo e($error); ?></div>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
-            @endif
+            <?php endif; ?>
 
-            <form method="POST" action="{{ route('auth') }}">
-                @csrf
+            <form method="POST" action="<?php echo e(route('auth')); ?>">
+                <?php echo csrf_field(); ?>
                 <div class="mb-3">
                     <label class="form-label">Email </label>
-                    <input type="email" name="email" value="{{ old('email') }}" class="form-control" placeholder="" required autofocus>
+                    <input type="email" name="email" value="<?php echo e(old('email')); ?>" class="form-control" placeholder="" required autofocus>
                 </div>
                 <div class="mb-4">
                     <label class="form-label">Password</label>
@@ -151,3 +153,4 @@
 </div>
 </body>
 </html>
+<?php /**PATH C:\Users\user\apk.pos2.salsa\resources\views/login.blade.php ENDPATH**/ ?>

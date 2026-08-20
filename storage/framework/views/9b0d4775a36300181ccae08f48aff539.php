@@ -1,9 +1,7 @@
-@extends('layouts.app')
+<?php $__env->startSection('title', 'penjualan'); ?>
 
-@section('title', 'penjualan')
-
-@section('content')
-@include('layouts.navbar')
+<?php $__env->startSection('content'); ?>
+<?php echo $__env->make('layouts.navbar', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 
 <style>
     /* 1. Tombol Create Atas - Disesuaikan dengan Aksen Ungu Indigo */
@@ -83,22 +81,23 @@
 
 <div class="container-fluid px-4 mt-3">
 
-@if (session('errors'))
+<?php if(session('errors')): ?>
     <div class="alert alert-danger">
-        {{ session('errors') }}
+        <?php echo e(session('errors')); ?>
+
     </div>
-@endif
+<?php endif; ?>
 
 <h1 class="fw-bold text-dark mb-3">Halaman penjualan</h1>
 
-<a href="{{ route('penjualan.create') }}" class="btn btn-create-purple mb-3 px-4">Create</a>
+<a href="<?php echo e(route('penjualan.create')); ?>" class="btn btn-create-purple mb-3 px-4">Create</a>
 
-<form action="{{ route('penjualan.index') }}" method="GET" class="mb-4">
+<form action="<?php echo e(route('penjualan.index')); ?>" method="GET" class="mb-4">
     <div class="input-group">
         <input
             type="text"
             name="search"
-            value="{{ request()->search }}"
+            value="<?php echo e(request()->search); ?>"
             class="form-control"
             placeholder="Search penjualan">
         <button class="btn btn-outline-secondary px-4" type="submit">
@@ -124,44 +123,44 @@
                 </thead>
 
                 <tbody>
-                    @forelse($sales as $sale)
+                    <?php $__empty_1 = true; $__currentLoopData = $sales; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $sale): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                     <tr>
-                        <th scope="row" class="ps-3 py-3 fw-bold text-secondary">{{ ($sales->firstItem() + $loop->index) }}</th>
-                        <td class="text-dark">{{$sale->created_at->translatedFormat('d-m-Y- H:i:s')}}</td>
+                        <th scope="row" class="ps-3 py-3 fw-bold text-secondary"><?php echo e(($sales->firstItem() + $loop->index)); ?></th>
+                        <td class="text-dark"><?php echo e($sale->created_at->translatedFormat('d-m-Y- H:i:s')); ?></td>
                         
                         <!-- Mengubah Nama Kasir menjadi ungu tua tebal yang serasi -->
-                        <td class="fw-bold" style="color: #6a5ae0;">{{ $sale->user->name }}</td>
+                        <td class="fw-bold" style="color: #6a5ae0;"><?php echo e($sale->user->name); ?></td>
                         
-                        <td class="fw-bold text-dark">Rp. {{number_format ($sale->total_pembayaran) }}</td>
-                        <td><span class="badge bg-light text-dark border px-2 py-1">{{ $sale->metode_pembayaran }}</span></td>
+                        <td class="fw-bold text-dark">Rp. <?php echo e(number_format ($sale->total_pembayaran)); ?></td>
+                        <td><span class="badge bg-light text-dark border px-2 py-1"><?php echo e($sale->metode_pembayaran); ?></span></td>
                         <td>
-                            @if($sale->status == 'COMPLETED')
+                            <?php if($sale->status == 'COMPLETED'): ?>
                                 <span class="badge bg-success-subtle text-success border border-success-subtle px-2 py-1">COMPLETED</span>
-                            @else
-                                <span class="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle px-2 py-1">{{ $sale->status }}</span>
-                            @endif
+                            <?php else: ?>
+                                <span class="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle px-2 py-1"><?php echo e($sale->status); ?></span>
+                            <?php endif; ?>
                         </td>
                         
                         <td class="text-center">
                             <div class="d-inline-flex align-items-center justify-content-center">
                                 <!-- Tombol Detail Gaya Baru -->
-                                <a href="{{ route('penjualan.show', $sale) }}" class="btn-action-detail text-decoration-none">
+                                <a href="<?php echo e(route('penjualan.show', $sale)); ?>" class="btn-action-detail text-decoration-none">
                                     Detail
                                 </a>
                                 
                                 <span class="action-divider">||</span>
                                 
                                 <!-- Tombol Edit Gaya Baru -->
-                                <a href="{{ route('penjualan.edit', $sale) }}" class="btn-action-edit text-decoration-none">
+                                <a href="<?php echo e(route('penjualan.edit', $sale)); ?>" class="btn-action-edit text-decoration-none">
                                     Edit
                                 </a>
                                 
                                 <span class="action-divider">||</span>
                                 
                                 <!-- Tombol Hapus Gaya Baru -->
-                                <form action="{{ route('penjualan.destroy', $sale) }}" method="POST" class="d-inline mb-0">
-                                    @csrf
-                                    @method('DELETE')
+                                <form action="<?php echo e(route('penjualan.destroy', $sale)); ?>" method="POST" class="d-inline mb-0">
+                                    <?php echo csrf_field(); ?>
+                                    <?php echo method_field('DELETE'); ?>
                                     <button type="submit" class="btn-action-delete border-0"
                                         onclick="return confirm('Apakah anda yakin akan menghapus penjualan ini?')">
                                         Hapus
@@ -170,11 +169,11 @@
                             </div>
                         </td>
                     </tr>
-                    @empty
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                     <tr>
                         <td colspan="7" class="text-center py-4 text-muted">Data Tidak Ditemukan</td>
                     </tr>
-                    @endforelse
+                    <?php endif; ?>
                 </tbody>
             </table>
         </div>
@@ -182,8 +181,11 @@
 </div>
 
 <div class="mt-3 px-2">
-    {{ $sales->links() }}
+    <?php echo e($sales->links()); ?>
+
 </div>
 
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\Users\user\apk.pos2.salsa\resources\views/penjualan/index.blade.php ENDPATH**/ ?>
