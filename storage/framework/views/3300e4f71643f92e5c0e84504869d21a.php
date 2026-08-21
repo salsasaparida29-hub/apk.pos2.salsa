@@ -1,10 +1,8 @@
-@extends('layouts.app')
+<?php $__env->startSection('title', 'Produk'); ?>
 
-@section('title', 'Produk')
+<?php $__env->startSection('content'); ?>
 
-@section('content')
-
-@include('layouts.navbar')
+<?php echo $__env->make('layouts.navbar', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 
 <style>
     /* 1. Tombol Create Atas - Disesuaikan dengan Aksen Ungu Indigo */
@@ -72,22 +70,23 @@
 <h1 class="fw-bold text-dark mb-3">Halaman Produk</h1>
 
 <!-- TAMBAHAN BARU: MENAMPILKAN PESAN SUKSES DI SINI TANPA MENGUBAH KODE LAIN -->
-@if (session('success'))
+<?php if(session('success')): ?>
     <div class="alert alert-success">
-        {{ session('success') }}
+        <?php echo e(session('success')); ?>
+
     </div>
-@endif
+<?php endif; ?>
 
-@can('create', App\Models\Produk::class)
-<a href="{{ route('produk.create') }}" class="btn btn-create-purple mb-3 px-4">Create</a>
-@endcan
+<?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('create', App\Models\Produk::class)): ?>
+<a href="<?php echo e(route('produk.create')); ?>" class="btn btn-create-purple mb-3 px-4">Create</a>
+<?php endif; ?>
 
-<form action="{{ route('produk.index') }}" method="GET" class="mb-4">
+<form action="<?php echo e(route('produk.index')); ?>" method="GET" class="mb-4">
     <div class="input-group">
         <input
             type="text"
             name="search"
-            value="{{ request('search') }}"
+            value="<?php echo e(request('search')); ?>"
             class="form-control"
             placeholder="Search nama produk"
         >
@@ -115,49 +114,49 @@
                 </thead>
 
                 <tbody>
-                    @forelse ($products as $product)
+                    <?php $__empty_1 = true; $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                     <tr>
-                        <th scope="row" class="ps-3 py-3 fw-bold text-secondary">{{ $products->firstItem() + $loop->index }}</th>
-                        <td class="text-muted">{{ $product->user?->name ?? '-' }}</td>
+                        <th scope="row" class="ps-3 py-3 fw-bold text-secondary"><?php echo e($products->firstItem() + $loop->index); ?></th>
+                        <td class="text-muted"><?php echo e($product->user?->name ?? '-'); ?></td>
 
                         <td>
-                            @if($product->foto)
+                            <?php if($product->foto): ?>
                                 <img
-                                    src="{{ asset('storage/' . $product->foto) }}"
+                                    src="<?php echo e(asset('storage/' . $product->foto)); ?>"
                                     width="60"
                                     class="img-thumbnail"
                                     style="border-radius: 6px;"
                                 >
-                            @else
+                            <?php else: ?>
                                 <span class="badge bg-light text-dark border">No Image</span>
-                            @endif
+                            <?php endif; ?>
                         </td>
 
-                        <td class="fw-bold text-dark">{{ $product->nama }}</td>
-                        <td class="text-secondary">Rp {{ number_format($product->harga_beli, 0, ',', '.') }}</td>
+                        <td class="fw-bold text-dark"><?php echo e($product->nama); ?></td>
+                        <td class="text-secondary">Rp <?php echo e(number_format($product->harga_beli, 0, ',', '.')); ?></td>
                         
                         <!-- Mengubah Warna Teks Harga Jual menjadi ungu tua tebal yang serasi -->
-                        <td class="fw-bold" style="color: #6a5ae0;">Rp {{ number_format($product->harga_jual, 0, ',', '.') }}</td>
+                        <td class="fw-bold" style="color: #6a5ae0;">Rp <?php echo e(number_format($product->harga_jual, 0, ',', '.')); ?></td>
                         
                         <!-- Angka Stok otomatis tebal mengikuti warna teks -->
-                        <td class="fw-bold text-dark">{{ $product->stok }}</td>
+                        <td class="fw-bold text-dark"><?php echo e($product->stok); ?></td>
 
                         <td class="text-center">
                             <div class="d-inline-flex align-items-center justify-content-center">
-                                @can('update', $product)
-                                <a href="{{ route('produk.edit', $product) }}" class="btn-action-edit text-decoration-none">
+                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('update', $product)): ?>
+                                <a href="<?php echo e(route('produk.edit', $product)); ?>" class="btn-action-edit text-decoration-none">
                                     Edit
                                 </a>
-                                @endcan
+                                <?php endif; ?>
 
-                                @if(auth()->user()->can('update', $product) && auth()->user()->can('delete', $product))
+                                <?php if(auth()->user()->can('update', $product) && auth()->user()->can('delete', $product)): ?>
                                 <span class="action-divider">||</span>
-                                @endif
+                                <?php endif; ?>
 
-                                @can('delete', $product)
-                                <form action="{{ route('produk.destroy', $product) }}" method="POST" class="d-inline mb-0">
-                                    @csrf
-                                    @method('DELETE')
+                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('delete', $product)): ?>
+                                <form action="<?php echo e(route('produk.destroy', $product)); ?>" method="POST" class="d-inline mb-0">
+                                    <?php echo csrf_field(); ?>
+                                    <?php echo method_field('DELETE'); ?>
                                     <button
                                         type="submit"
                                         class="btn-action-delete border-0"
@@ -166,15 +165,15 @@
                                         Hapus
                                     </button>
                                 </form>
-                                @endcan
+                                <?php endif; ?>
                             </div>
                         </td>
                     </tr>
-                    @empty
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                     <tr>
                         <td colspan="8" class="text-center py-4 text-muted">Data tidak tersedia.</td>
                     </tr>
-                    @endforelse
+                    <?php endif; ?>
                 </tbody>
             </table>
         </div>
@@ -182,8 +181,11 @@
 </div>
 
 <div class="mt-3 px-2">
-    {{ $products->links() }}
+    <?php echo e($products->links()); ?>
+
 </div>
 
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\laragon\www\apk.pos2.salsa\resources\views/produk/index.blade.php ENDPATH**/ ?>

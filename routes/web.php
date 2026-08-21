@@ -7,6 +7,8 @@ use App\Http\Controllers\ItemPenjualanController;
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\UserController;
+// 1. TAMBAHKAN IMPORT CONTROLLER JENIS DI SINI (Sesuaikan nama Controller Anda)
+use App\Http\Controllers\JenisController; 
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'index'])->name('login');
@@ -29,6 +31,9 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::middleware('role:admin,kasir')->group(function () {
+        // 2. TAMBAHKAN RUTE JENIS DI SINI (Bisa diakses Admin dan Kasir)
+        Route::resource('/jenis', JenisController::class); 
+        
         Route::resource('/produk', ProdukController::class);
         Route::resource('/penjualan', PenjualanController::class);
         Route::resource('/itempenjualan', ItemPenjualanController::class);

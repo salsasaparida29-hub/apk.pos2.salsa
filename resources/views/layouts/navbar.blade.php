@@ -5,28 +5,31 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <!-- HANYA MENAMBAHKAN ATRIBUT STYLE DI BAWAH INI -->
       <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="width: 100%; justify-content: center;">
         <li class="nav-item">
           <a class="nav-link {{ Request::is('dashboard') ? 'active' : ''}}" aria-current="page" href="{{ route('dashboard') }}">Dashboard</a>
         </li>
         
-        <!-- PEMBATASAN MENU USERS (HANYA UNTUK ADMIN ROLE ID 1) -->
         @if(auth()->user()->role_id == 1)
         <li class="nav-item">
           <a class="nav-link {{ Request::is('admin/users') ? 'active' : ''}}" href="{{ route('admin.users') }}">Users</a>
         </li>
         @endif
 
+        <!-- MENU JENIS (SEBELUM PRODUK) -->
+        <li class="nav-item">
+          <a class="nav-link {{ Request::is('jenis') ? 'active' : ''}}" href="{{ route('jenis.index') }}">Jenis</a>
+        </li>
+
         <li class="nav-item">
           <a class="nav-link {{ Request::is('produk') ? 'active' : ''}}" href="{{ route('produk.index') }}">Produk</a>
         </li>
+        
         <li class="nav-item">
           <a class="nav-link {{ Request::is('penjualan') ? 'active' : ''}}" href="{{ route('penjualan.index') }}">Penjualan</a>
         </li>
       </ul>
 
-      <!-- PERBAIKAN: Mengubah form POST menjadi link GET biasa agar bebas dari eror 419 -->
       <div class="d-flex">
         <a href="{{ route('logout') }}" class="btn btn-danger">Logout</a>
       </div>

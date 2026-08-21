@@ -2,9 +2,9 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-  <title>@yield('title')</title>
+  <title><?php echo $__env->yieldContent('title'); ?></title>
 
-  @vite(['resources/css/app.css','resources/js/app.js'])
+  <?php echo app('Illuminate\Foundation\Vite')(['resources/css/app.css','resources/js/app.js']); ?>
 
   <style>
       html, body {
@@ -50,18 +50,13 @@
 
     <!-- PERBAIKAN UTAMA: Kode alert session success di file utama ini dimatikan -->
     <!-- Agar sistem notifikasi murni diatur dan muncul lewat navbar.blade.php Anda -->
-    {{-- 
-    @if(session('success'))
-        <div class="alert alert-success mt-3">
-            {{ session('success') }}
-        </div>
-    @endif 
-    --}}
+    
 
-    @yield('content')
+    <?php echo $__env->yieldContent('content'); ?>
 
 </div>
 
 </body>
 
 </html>
+<?php /**PATH C:\laragon\www\apk.pos2.salsa\resources\views/layouts/app.blade.php ENDPATH**/ ?>

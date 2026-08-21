@@ -108,15 +108,10 @@ class ProdukController extends Controller
             'stok'       => $dataReq['stock'],
         ];
 
-        // Jika upload foto baru
         if ($request->hasFile('foto')) {
-
-            // Hapus foto lama
             if ($produk->foto) {
                 Storage::disk('public')->delete($produk->foto);
             }
-
-            // Simpan foto baru
             $data['foto'] = $request->file('foto')->store('products', 'public');
         }
 
@@ -134,16 +129,15 @@ class ProdukController extends Controller
     {
         $this->authorize('delete', $produk);
 
-        if ($produk->itemPenjualan()->exists()) {
-            return redirect()
-                ->route('produk.index')
-                ->with('error', 'Produk tidak dapat dihapus karena masih ada di data penjualan');
-        }
+        // PERBAIKAN: Hapus riwayat produk ini di item penjualan terlebih dahulu agar database tidak eror/lock
+        $produk->itemPenjualan()->delete();
 
+        // Mengurangi/menghapus berkas foto dari penyimpanan lokal jika ada
         if ($produk->foto) {
             Storage::disk('public')->delete($produk->foto);
         }
 
+        // Hapus produk utama
         $produk->delete();
 
         return redirect()
