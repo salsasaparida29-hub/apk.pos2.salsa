@@ -8,7 +8,7 @@
         <div class="d-flex justify-content-between align-items-center mb-2">
             <h3 class="fw-bold text-secondary mb-0">Data Jenis Produk</h3>
             <a href="{{ route('dashboard') }}" class="btn btn-secondary shadow-sm px-3">
-                ← Kembali ke Dashboard
+                ← Kembali ke Halaman
             </a>
         </div>
 
@@ -18,6 +18,13 @@
                 + Tambah Jenis
             </a>
         </div>
+
+        <!-- TAMBAHAN BARU: MENAMPILKAN PESAN SUKSES DI SINI TANPA MENGUBAH KODE LAIN -->
+        @if (session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert" style="background-color: #efeafd; color: #4c3fb0; border: 1px solid #cbbdf5; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
+                {{ session('success') }}
+            </div>
+        @endif
 
         <!-- KARTU TABEL DATA -->
         <div class="card border-0 shadow-sm rounded-3">

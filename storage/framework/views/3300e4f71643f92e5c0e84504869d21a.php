@@ -69,13 +69,7 @@
 
 <h1 class="fw-bold text-dark mb-3">Halaman Produk</h1>
 
-<!-- TAMBAHAN BARU: MENAMPILKAN PESAN SUKSES DI SINI TANPA MENGUBAH KODE LAIN -->
-<?php if(session('success')): ?>
-    <div class="alert alert-success">
-        <?php echo e(session('success')); ?>
 
-    </div>
-<?php endif; ?>
 
 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('create', App\Models\Produk::class)): ?>
 <a href="<?php echo e(route('produk.create')); ?>" class="btn btn-create-purple mb-3 px-4">Create</a>

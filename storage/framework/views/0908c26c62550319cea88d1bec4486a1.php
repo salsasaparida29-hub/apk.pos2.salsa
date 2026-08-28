@@ -88,7 +88,7 @@
     </div>
 <?php endif; ?>
 
-<!-- PERBAIKAN: Kode alert session success di sini sudah dihapus sepenuhnya -->
+<!-- Notifikasi sukses sudah bersih total dari file ini -->
 
 <h1 class="fw-bold text-dark mb-3">Halaman penjualan</h1>
 
@@ -146,7 +146,6 @@
                         
                         <td class="text-center">
                             <div class="d-inline-flex align-items-center justify-content-center">
-                                <!-- Tombol Detail -->
                                 <a href="<?php echo e(route('penjualan.show', $sale)); ?>" class="btn-action-detail text-decoration-none">
                                     Detail
                                 </a>
@@ -154,14 +153,12 @@
                                 <?php if($sale->status == 'OPEN'): ?>
                                     <span class="action-divider">||</span>
                                     
-                                    <!-- Tombol Edit -->
                                     <a href="<?php echo e(route('penjualan.edit', $sale)); ?>" class="btn-action-edit text-decoration-none">
                                         Edit
                                     </a>
                                     
                                     <span class="action-divider">||</span>
                                     
-                                    <!-- Tombol Hapus -->
                                     <form action="<?php echo e(route('penjualan.destroy', $sale)); ?>" method="POST" class="d-inline mb-0">
                                         <?php echo csrf_field(); ?>
                                         <?php echo method_field('DELETE'); ?>

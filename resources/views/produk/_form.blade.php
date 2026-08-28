@@ -35,6 +35,26 @@
     </div>
 </div>
 
+{{-- AWAL KODE TAMBAHAN DROPDOWN JENIS PRODUK --}}
+<div class="mb-3">
+    <label class="form-label">Jenis Produk</label>
+    <select name="jenis_id" class="form-control @error('jenis_id') is-invalid @enderror">
+        <option value="">-- Pilih Jenis Produk --</option>
+        @foreach($jenis as $item)
+            <option value="{{ $item->id }}" {{ old('jenis_id', $produk->jenis_id ?? '') == $item->id ? 'selected' : '' }}>
+                {{ $item->nama_jenis }}
+            </option>
+        @endforeach
+    </select>
+
+    @error('jenis_id')
+        <div class="invalid-feedback">
+            {{ $message }}
+        </div>
+    @enderror
+</div>
+{{-- AKHIR KODE TAMBAHAN DROPDOWN JENIS PRODUK --}}
+
 <div class="mb-3">
     <label class="form-label">Nama Produk</label>
     <input

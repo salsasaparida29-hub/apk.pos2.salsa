@@ -48,15 +48,12 @@
 
 <div class="container-fluid px-4">
 
-    <!-- PERBAIKAN UTAMA: Kode alert session success di file utama ini dimatikan -->
-    <!-- Agar sistem notifikasi murni diatur dan muncul lewat navbar.blade.php Anda -->
-    {{-- 
+    <!-- PERBAIKAN UTAMA: Mengaktifkan kembali alert session agar notifikasi selamat datang muncul -->
     @if(session('success'))
-        <div class="alert alert-success mt-3">
+        <div class="alert alert-success mt-3 p-3">
             {{ session('success') }}
         </div>
     @endif 
-    --}}
 
     @yield('content')
 

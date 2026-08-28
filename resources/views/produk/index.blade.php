@@ -71,12 +71,7 @@
 
 <h1 class="fw-bold text-dark mb-3">Halaman Produk</h1>
 
-<!-- TAMBAHAN BARU: MENAMPILKAN PESAN SUKSES DI SINI TANPA MENGUBAH KODE LAIN -->
-@if (session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-@endif
+{{-- PERBAIKAN: Kode alert sukses di bawah ini dihapus agar tidak duplikat dengan layout utama --}}
 
 @can('create', App\Models\Produk::class)
 <a href="{{ route('produk.create') }}" class="btn btn-create-purple mb-3 px-4">Create</a>
