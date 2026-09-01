@@ -19,14 +19,6 @@
             </a>
         </div>
 
-        <!-- TAMBAHAN BARU: MENAMPILKAN PESAN SUKSES DI SINI TANPA MENGUBAH KODE LAIN -->
-        <?php if(session('success')): ?>
-            <div class="alert alert-success alert-dismissible fade show" role="alert" style="background-color: #efeafd; color: #4c3fb0; border: 1px solid #cbbdf5; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
-                <?php echo e(session('success')); ?>
-
-            </div>
-        <?php endif; ?>
-
         <!-- KARTU TABEL DATA -->
         <div class="card border-0 shadow-sm rounded-3">
             <div class="card-body p-4">
