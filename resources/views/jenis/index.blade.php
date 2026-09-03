@@ -1,9 +1,13 @@
 @extends('layouts.app') 
 
 @section('content')
+@include('layouts.navbar')
+
 <div class="bg-light min-vh-100 py-4">
     <div class="container">
         
+        {{-- PERBAIKAN: Blok notifikasi sukses di sini sudah dihapus total agar tidak duplikat dengan layout utama --}}
+
         <!-- BARIS ATAS: JUDUL DI KIRI, KEMBALI DI UJUNG KANAN -->
         <div class="d-flex justify-content-between align-items-center mb-2">
             <h3 class="fw-bold text-secondary mb-0">Data Jenis Produk</h3>
@@ -14,7 +18,7 @@
 
         <!-- BARIS KEDUA: TOMBOL TAMBAH TEPAT DI BAWAH JUDUL -->
         <div class="mb-4">
-            <a href="{{ route('jenis.create') }}" class="btn btn-primary px-4 shadow-sm">
+            <a href="{{ route('jenis.create') }}" class="btn btn-primary px-4 shadow-sm" style="background-color: #6a5ae0; border-color: #6a5ae0;">
                 + Tambah Jenis
             </a>
         </div>

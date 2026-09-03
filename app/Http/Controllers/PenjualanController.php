@@ -20,17 +20,14 @@ class PenjualanController extends Controller
         $keyword = $request->input('search');
 
         $sales = Penjualan::query()
-
             ->when($user->role->name === 'kasir', function ($query) use ($user) {
                 $query->where('user_id', $user->id);
             })
-
             ->when($keyword, function ($query) use ($keyword) {
                 $query->whereHas('user', function ($q) use ($keyword) {
                     $q->where('name', 'like', '%' . $keyword . '%');
                 });
             })
-
             ->latest()
             ->paginate(10)
             ->withQueryString();
@@ -95,10 +92,6 @@ class PenjualanController extends Controller
     public function edit(Penjualan $penjualan)
     {
         $sale = $penjualan;
-
-        // DIUBAH: Baris abort_if dimatikan dengan // agar status COMPLETED bisa diedit tanpa error 403
-        // abort_if($sale->status === 'COMPLETED', 403);
-
         $sale->load('itemPenjualan');
         $products = Produk::orderBy('nama')->get();
         $mode = 'edit';
@@ -115,24 +108,20 @@ class PenjualanController extends Controller
             'payment_method' => 'required|in:CASH,QRIS'
         ]);
 
-        // DIUBAH: Baris ini dimatikan jika Anda ingin transaksi yang sudah diproses bisa di-update ulang
-        // if ($penjualan->status !== 'OPEN') {
-        //     return back()->with('errors', 'Transaksi sudah diproses');
-        // }
-
         if ($penjualan->itemPenjualan()->count() === 0) {
             return back()->with('errors', 'Keranjang masih kosong');
         }
 
         DB::transaction(function () use ($penjualan, $request) {
-
-            // Hitung ulang total (anti manipulasi)
+            // Hitung ulang total (anti manipulasi data dari frontend)
             $total = $penjualan->itemPenjualan()->sum('subtotal');
 
             $penjualan->update([
                 'metode_pembayaran' => $request->payment_method,
                 'total_pembayaran'  => $total,
-                'status'            => 'COMPLETED'
+                'status'            => 'COMPLETED',
+                // FIX: Tanggal diperbarui otomatis saat transaksi sukses dibayar
+                'created_at'        => now() 
             ]);
         });
 
@@ -146,30 +135,17 @@ class PenjualanController extends Controller
      */
     public function destroy(Penjualan $penjualan)
     {
-        // DIUBAH: Mematikan proteksi Policy agar tombol hapus bisa berfungsi tanpa error 403
-        // $this->authorize('delete', $penjualan);
-        
-        // DIUBAH: Baris ini dimatikan jika Anda ingin mengizinkan penghapusan nota transaksi yang berstatus COMPLETED
-        // if ($penjualan->status !== 'OPEN') {
-        //     return redirect()->route('penjualan.create')->with('errors', 'Transaksi sudah selesai tidak bisa dibatalkan');
-        // }
-
-        // Pastikan milik user login (kasir)
         if ($penjualan->user_id !== Auth::id()) {
             return redirect()->route('penjualan.create');
         }
 
         DB::transaction(function () use ($penjualan) {
-
             foreach ($penjualan->itemPenjualan as $item) {
-                // kembalikan stok
+                // kembalikan stok produk jika dibatalkan
                 $item->produk->increment('stok', $item->kuantitas);
             }
 
-            // hapus iteman route
             $penjualan->itemPenjualan()->delete();
-
-            // hapus penjualan
             $penjualan->delete();
         });
 

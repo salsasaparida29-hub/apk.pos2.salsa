@@ -1,9 +1,13 @@
  
 
 <?php $__env->startSection('content'); ?>
+<?php echo $__env->make('layouts.navbar', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+
 <div class="bg-light min-vh-100 py-4">
     <div class="container">
         
+        
+
         <!-- BARIS ATAS: JUDUL DI KIRI, KEMBALI DI UJUNG KANAN -->
         <div class="d-flex justify-content-between align-items-center mb-2">
             <h3 class="fw-bold text-secondary mb-0">Data Jenis Produk</h3>
@@ -14,7 +18,7 @@
 
         <!-- BARIS KEDUA: TOMBOL TAMBAH TEPAT DI BAWAH JUDUL -->
         <div class="mb-4">
-            <a href="<?php echo e(route('jenis.create')); ?>" class="btn btn-primary px-4 shadow-sm">
+            <a href="<?php echo e(route('jenis.create')); ?>" class="btn btn-primary px-4 shadow-sm" style="background-color: #6a5ae0; border-color: #6a5ae0;">
                 + Tambah Jenis
             </a>
         </div>

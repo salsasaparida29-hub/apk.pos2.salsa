@@ -4,17 +4,22 @@
 
 @section('content')
 
-<h4>Edit Produk</h4>
+<div class="container mt-4">
+    <!-- PERBAIKAN: Teks dibuat rata kiri (text-align: left), tetapi letak areanya sejajar di atas kotak form tengah -->
+    <h4 class="fw-bold text-dark mx-auto mb-3" style="max-width: 700px; text-align: left !important; padding-left: 2px;">
+        Edit Produk
+    </h4>
 
-<form action="{{ route('produk.update', $produk) }}"
-      method="POST"
-      enctype="multipart/form-data">
+    <form action="{{ route('produk.update', $produk) }}"
+          method="POST"
+          enctype="multipart/form-data">
 
-    @csrf
-    @method('PUT')
+        @csrf
+        @method('PUT')
 
-    @include('produk._form')
+        @include('produk._form')
 
-</form>
+    </form>
+</div>
 
 @endsection

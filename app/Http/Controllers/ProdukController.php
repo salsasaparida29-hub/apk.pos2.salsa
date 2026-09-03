@@ -6,7 +6,7 @@ use App\Http\Requests\Produk\StoreRequest;
 use App\Http\Requests\Produk\UpdateRequest;
 use App\Http\Requests\SearchRequest;
 use App\Models\Produk;
-use App\Models\Jenis; // <-- Ditambahkan untuk import model Jenis
+use App\Models\Jenis;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -45,7 +45,7 @@ class ProdukController extends Controller
     {
         $this->authorize('create', Produk::class);
 
-        // Ditambahkan pengambilan data jenis untuk dikirim ke view tambah
+        
         $jenis = Jenis::all(); 
 
         return view('produk.create', compact('jenis'));
@@ -61,7 +61,7 @@ class ProdukController extends Controller
         $dataReq = $request->validated();
 
         $data['user_id'] = Auth::id();
-        $data['jenis_id'] = $request->input('jenis_id'); // <-- Ditambahkan untuk menangkap input jenis_id
+        $data['jenis_id'] = $request->input('jenis_id'); 
         $data['nama'] = $dataReq['name'];
         $data['harga_beli'] = $dataReq['purchase_price'];
         $data['harga_jual'] = $dataReq['selling_price'];
@@ -73,7 +73,7 @@ class ProdukController extends Controller
 
         Produk::create($data);
 
-        // PERBAIKAN: Mengubah teks notifikasi menjadi bahasa Indonesia
+      
         return redirect()
             ->route('produk.index')
             ->with('success', 'Produk berhasil ditambahkan');
@@ -94,7 +94,6 @@ class ProdukController extends Controller
     {
         $this->authorize('update', $produk);
 
-        // Ditambahkan pengambilan data jenis untuk dikirim ke view edit
         $jenis = Jenis::all(); 
 
         return view('produk.edit', compact('produk', 'jenis'));
@@ -111,8 +110,7 @@ class ProdukController extends Controller
 
         $data = [
             'user_id'    => Auth::id(),
-            'jenis_id'   => $request->input('jenis_id'), // <-- Ditambahkan untuk menangkap pembaruan jenis_id
-            'nama'       => $dataReq['name'],
+            'jenis_id'   => $request->input('jenis_id'),
             'harga_beli' => $dataReq['purchase_price'],
             'harga_jual' => $dataReq['selling_price'],
             'stok'       => $dataReq['stock'],
@@ -127,7 +125,6 @@ class ProdukController extends Controller
 
         $produk->update($data);
 
-        // PERBAIKAN: Mengubah teks notifikasi menjadi bahasa Indonesia
         return redirect()
             ->route('produk.edit', $produk->id)
             ->with('success', 'Produk berhasil diperbarui');
@@ -140,18 +137,15 @@ class ProdukController extends Controller
     {
         $this->authorize('delete', $produk);
 
-        // PERBAIKAN: Hapus riwayat produk ini di item penjualan terlebih dahulu agar database tidak eror/lock
         $produk->itemPenjualan()->delete();
 
-        // Mengurangi/menghapus berkas foto dari penyimpanan lokal jika ada
+        
         if ($produk->foto) {
             Storage::disk('public')->delete($produk->foto);
         }
 
-        // Hapus produk utama
         $produk->delete();
 
-        // PERBAIKAN: Mengubah teks notifikasi menjadi bahasa Indonesia
         return redirect()
             ->route('produk.index')
             ->with('success', 'Produk berhasil dihapus');
