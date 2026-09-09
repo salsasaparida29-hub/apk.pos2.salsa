@@ -45,7 +45,6 @@ class ProdukController extends Controller
     {
         $this->authorize('create', Produk::class);
 
-        
         $jenis = Jenis::all(); 
 
         return view('produk.create', compact('jenis'));
@@ -58,6 +57,7 @@ class ProdukController extends Controller
     {
         $this->authorize('create', Produk::class);
 
+        // Mengambil semua data yang lolos validasi dari StoreRequest
         $dataReq = $request->validated();
 
         $data['user_id'] = Auth::id();
@@ -65,15 +65,15 @@ class ProdukController extends Controller
         $data['nama'] = $dataReq['name'];
         $data['harga_beli'] = $dataReq['purchase_price'];
         $data['harga_jual'] = $dataReq['selling_price'];
-        $data['stok'] = $dataReq['stock'] ?? true;
+        $data['stok'] = $dataReq['stock'] ?? 0;
 
-        if ($request->hasFile('foto')) {
-            $data['foto'] = $request->file('foto')->store('products', 'public');
+        // PERBAIKAN: Mengubah 'foto' menjadi 'gambar' sesuai input Form Blade
+        if ($request->hasFile('gambar')) {
+            $data['foto'] = $request->file('gambar')->store('products', 'public');
         }
 
         Produk::create($data);
 
-      
         return redirect()
             ->route('produk.index')
             ->with('success', 'Produk berhasil ditambahkan');
@@ -108,25 +108,28 @@ class ProdukController extends Controller
 
         $dataReq = $request->validated();
 
+        // PERBAIKAN: Menambahkan field 'nama' agar nama produk tidak hilang/terhapus saat di-update
         $data = [
             'user_id'    => Auth::id(),
             'jenis_id'   => $request->input('jenis_id'),
+            'nama'       => $dataReq['name'], 
             'harga_beli' => $dataReq['purchase_price'],
             'harga_jual' => $dataReq['selling_price'],
             'stok'       => $dataReq['stock'],
         ];
 
-        if ($request->hasFile('foto')) {
+        // PERBAIKAN: Mengubah 'foto' menjadi 'gambar' sesuai input Form Blade
+        if ($request->hasFile('gambar')) {
             if ($produk->foto) {
                 Storage::disk('public')->delete($produk->foto);
             }
-            $data['foto'] = $request->file('foto')->store('products', 'public');
+            $data['foto'] = $request->file('gambar')->store('products', 'public');
         }
 
         $produk->update($data);
 
         return redirect()
-            ->route('produk.edit', $produk->id)
+            ->route('produk.index') // Diubah ke index agar setelah edit kembali ke tabel utama
             ->with('success', 'Produk berhasil diperbarui');
     }
 
@@ -138,7 +141,6 @@ class ProdukController extends Controller
         $this->authorize('delete', $produk);
 
         $produk->itemPenjualan()->delete();
-
         
         if ($produk->foto) {
             Storage::disk('public')->delete($produk->foto);

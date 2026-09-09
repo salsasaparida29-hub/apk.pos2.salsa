@@ -32,14 +32,13 @@
                 </form>
             </div>
             <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-    
+
                 <form method="POST" action="<?php echo e(route('itempenjualan.store')); ?>" class="row mb-2">
                     <?php echo csrf_field(); ?>
                     <input type="hidden" name="penjualan_id" value="<?php echo e($sale->id); ?>">
                     <input type="hidden" name="product_id" value="<?php echo e($product->id); ?>">
 
                     <div class="col-7">
-                     
                         <button type="submit" class="btn btn-outline-primary w-100 text-start p-2">
                             <div class="d-flex align-items-center gap-2">
                                 <img src="<?php echo e(asset('storage/' . $product->foto)); ?>"
@@ -61,7 +60,6 @@
                     </div>
 
                     <div class="col-2">
-                     
                         <button type="submit" class="btn btn-primary w-100">+</button>
                     </div>
                 </form>
@@ -99,7 +97,6 @@
                     </td>
                     <td>Rp <?php echo e(number_format($item->subtotal ?? 0)); ?></td>
                     <td>
-                        
                         <form method="POST" action="<?php echo e(route('itempenjualan.destroy', $item->id)); ?>" onsubmit="return confirm('Hapus item dari keranjang?')">
                             <?php echo csrf_field(); ?> <?php echo method_field('DELETE'); ?>
                             <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
@@ -120,21 +117,39 @@
                 <strong class="fs-5 text-success">Rp <?php echo e(number_format($sale->total_pembayaran)); ?></strong>
             </div>
 
+            
             <form method="POST"
+                id="form-checkout"
                 action="<?php echo e(route('penjualan.update', $sale->id)); ?>"
-                onsubmit="return confirm('Yakin ingin memproses checkout transaksi ini?')" class="mt-2">
+                onsubmit="return validasiSebelumSubmit()" class="mt-2">
                 <?php echo csrf_field(); ?>
                 <?php echo method_field('PUT'); ?>
-                <select name="payment_method" class="form-select mb-2" required>
+
+                <select name="payment_method" id="payment_method" class="form-select mb-2" required onchange="toggleMetodePembayaran()">
                     <option value="">Pilih Pembayaran</option>
                     <option value="CASH" <?php echo e($sale->metode_pembayaran === 'CASH' ? 'selected' : ''); ?>>Cash</option>
                     <option value="QRIS" <?php echo e($sale->metode_pembayaran === 'QRIS' ? 'selected' : ''); ?>>QRIS</option>
                 </select>
-            
+
+                
+                <div id="area_cash" style="display:none;" class="mb-2">
+                    <label class="form-label">Uang Diterima</label>
+                    <input type="number" name="uang_masuk" id="uang_masuk" class="form-control" placeholder="0" oninput="hitungKembalian()">
+                    <p class="mt-2 mb-0">Kembalian: <b id="kembalian_text">Rp 0</b></p>
+                </div>
+
+                
+                <div id="area_qris" style="display:none; text-align:center;" class="mb-2">
+                    <div id="qrcode" class="d-flex justify-content-center my-2"></div>
+                    <p class="text-muted mt-2">Scan untuk membayar Rp <?php echo e(number_format($sale->total_pembayaran)); ?></p>
+                </div>
+
                 <button type="submit" class="btn btn-success w-100">
-                    Selesaikan Transaksi 
+                    Selesaikan Transaksi
                 </button>
             </form>
+
+            
             <form action="<?php echo e(route('penjualan.destroy', $sale->id)); ?>"
                 method="POST"
                 class="mt-2"
@@ -142,7 +157,7 @@
                 <?php echo csrf_field(); ?>
                 <?php echo method_field('DELETE'); ?>
                 <button type="submit" class="btn btn-outline-danger w-100">
-                    Batal Transaksi 
+                    Batal Transaksi
                 </button>
             </form>
         </div>
@@ -150,6 +165,56 @@
 </div>
 
 </div>
-<?php $__env->stopSection(); ?>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+const totalBelanja = <?php echo e($sale->total_pembayaran); ?>;
+
+function toggleMetodePembayaran() {
+    const metode = document.getElementById('payment_method').value;
+    document.getElementById('area_cash').style.display = 'none';
+    document.getElementById('area_qris').style.display = 'none';
+
+    if (metode === 'CASH') {
+        document.getElementById('area_cash').style.display = 'block';
+    } else if (metode === 'QRIS') {
+        document.getElementById('area_qris').style.display = 'block';
+        generateQrCode();
+    }
+}
+
+function generateQrCode() {
+    const el = document.getElementById('qrcode');
+    el.innerHTML = ''; // reset biar nggak dobel
+    new QRCode(el, {
+        text: `PEMBAYARAN-QRIS|ID:<?php echo e($sale->id); ?>|TOTAL:${totalBelanja}`,
+        width: 200,
+        height: 200
+    });
+}
+
+function hitungKembalian() {
+    const uangMasuk = parseInt(document.getElementById('uang_masuk').value) || 0;
+    const kembalian = uangMasuk - totalBelanja;
+    document.getElementById('kembalian_text').innerText =
+        'Rp ' + (kembalian >= 0 ? kembalian : 0).toLocaleString('id-ID');
+}
+
+function validasiSebelumSubmit() {
+    const metode = document.getElementById('payment_method').value;
+
+    if (metode === 'CASH') {
+        const uangMasuk = parseInt(document.getElementById('uang_masuk').value) || 0;
+        if (uangMasuk < totalBelanja) {
+            alert('Uang yang diberikan kurang dari total belanja');
+            return false;
+        }
+    }
+
+    return confirm('Yakin ingin memproses checkout transaksi ini?');
+}
+
+document.addEventListener('DOMContentLoaded', toggleMetodePembayaran);
+</script>
+<?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\laragon\www\apk.pos2.salsa\resources\views/penjualan/pos.blade.php ENDPATH**/ ?>

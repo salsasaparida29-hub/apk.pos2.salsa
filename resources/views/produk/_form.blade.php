@@ -68,17 +68,17 @@
     </div>
     @endif
 
-    <!-- 2. BLOK INPUT GAMBAR BARU DAN PREVIEW -->
+    <!-- 2. BLOK INPUT GAMBAR BARU DAN PREVIEW (Sudah disinkronkan ke name="gambar") -->
     <div class="row mb-4">
         <div class="col-md-6">
             <label class="form-label-custom">Gambar</label>
             <input
                 type="file"
-                name="foto"
+                name="gambar"
                 onchange="previewImage(this)"
-                class="form-control form-control-custom @error('foto') is-invalid @enderror">
+                class="form-control form-control-custom @error('gambar') is-invalid @enderror">
 
-            @error('foto')
+            @error('gambar')
                 <div class="invalid-feedback">
                     {{ $message }}
                 </div>
@@ -202,6 +202,9 @@ function previewImage(input) {
     if (input.files && input.files[0]) {
         preview.src = URL.createObjectURL(input.files[0]);
         preview.style.display = 'block';
+    } else {
+        preview.src = "#";
+        preview.style.display = 'none';
     }
 }
 </script>
