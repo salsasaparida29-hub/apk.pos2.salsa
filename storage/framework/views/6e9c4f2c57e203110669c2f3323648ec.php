@@ -110,12 +110,12 @@
     </div>
 <?php endif; ?>
 
-
 <?php if(session('success')): ?>
-    <!-- Notifikasi full-width warna ungu muda, pas muncul saat klik logout -->
-    <div class="alert alert-purple-custom status-banner small mb-0">
-        <?php echo e(session('success')); ?>
+    <div class="container-fluid px-4">
+        <div class="alert alert-purple-custom mt-3 p-3">
+            <?php echo e(session('success')); ?>
 
+        </div>
     </div>
 <?php endif; ?>
 

@@ -7,7 +7,6 @@
 @include('layouts.navbar')
 
 <style>
-    /* 1. Tombol Create Atas - Disesuaikan dengan Aksen Ungu Indigo */
     .btn-create-purple {
         background-color: #6a5ae0 !important;
         border-color: #6a5ae0 !important;
@@ -20,7 +19,6 @@
         color: #ffffff !important;
     }
 
-    /* 2. Kepala Tabel - Disesuaikan dengan Ungu Muda Pastel */
     .table-thead-purple th {
         background-color: #f3ebff !important;
         color: #6a5ae0 !important;
@@ -28,7 +26,6 @@
         border-bottom: 2px solid #e1d5f5 !important;
     }
 
-    /* 3. Tombol Aksi Kerja - Edit (Kuning Emas), Hapus (Merah Pastel) */
     .btn-action-edit {
         background-color: #fff9db !important;
         color: #f59f00 !important;
@@ -59,7 +56,6 @@
         color: #ffffff !important;
     }
 
-    /* Pembatas Simbol Garis Vertikal Antar Tombol */
     .action-divider {
         color: #ced4da;
         margin: 0 4px;
@@ -70,8 +66,6 @@
 <div class="container-fluid px-4 mt-3">
 
 <h1 class="fw-bold text-dark mb-3">Halaman Produk</h1>
-
-{{-- PERBAIKAN: Kode alert sukses di bawah ini dihapus agar tidak duplikat dengan layout utama --}}
 
 @can('create', App\Models\Produk::class)
 <a href="{{ route('produk.create') }}" class="btn btn-create-purple mb-3 px-4">Create</a>
@@ -102,6 +96,7 @@
                         <th scope="col">User</th>
                         <th scope="col">Foto</th>
                         <th scope="col">Nama</th>
+                        <th scope="col">Jenis</th>
                         <th scope="col">Harga Beli</th>
                         <th scope="col">Harga Jual</th>
                         <th scope="col">Stok</th>
@@ -129,12 +124,9 @@
                         </td>
 
                         <td class="fw-bold text-dark">{{ $product->nama }}</td>
+                        <td class="text-secondary">{{ $product->jenis?->nama_jenis ?? '-' }}</td>
                         <td class="text-secondary">Rp {{ number_format($product->harga_beli, 0, ',', '.') }}</td>
-                        
-                        <!-- Mengubah Warna Teks Harga Jual menjadi ungu tua tebal yang serasi -->
                         <td class="fw-bold" style="color: #6a5ae0;">Rp {{ number_format($product->harga_jual, 0, ',', '.') }}</td>
-                        
-                        <!-- Angka Stok otomatis tebal mengikuti warna teks -->
                         <td class="fw-bold text-dark">{{ $product->stok }}</td>
 
                         <td class="text-center">
@@ -167,7 +159,7 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="8" class="text-center py-4 text-muted">Data tidak tersedia.</td>
+                        <td colspan="9" class="text-center py-4 text-muted">Data tidak tersedia.</td>
                     </tr>
                     @endforelse
                 </tbody>

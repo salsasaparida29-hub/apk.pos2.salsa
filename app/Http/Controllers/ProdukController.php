@@ -13,9 +13,6 @@ use Illuminate\Support\Facades\Storage;
 
 class ProdukController extends Controller
 {
-    /** 
-     * Display a listing of the resource.
-     */
     public function index(SearchRequest $request)
     {
         $this->authorize('viewAny', Produk::class);
@@ -23,14 +20,16 @@ class ProdukController extends Controller
         $keyword = $request->input('search');
 
         if ($keyword) {
-            $products = Produk::when($keyword, function ($query) use ($keyword) {
-                $query->where('nama', 'like', '%' . $keyword . '%');
-            })
-            ->orderBy('nama')
-            ->paginate(10)
-            ->withQueryString();
+            $products = Produk::with('jenis')
+                ->when($keyword, function ($query) use ($keyword) {
+                    $query->where('nama', 'like', '%' . $keyword . '%');
+                })
+                ->orderBy('nama')
+                ->paginate(10)
+                ->withQueryString();
         } else {
-            $products = Produk::latest()
+            $products = Produk::with('jenis')
+                ->latest()
                 ->paginate(10)
                 ->withQueryString();
         }
@@ -38,9 +37,6 @@ class ProdukController extends Controller
         return view('produk.index', compact('products'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         $this->authorize('create', Produk::class);
@@ -50,14 +46,10 @@ class ProdukController extends Controller
         return view('produk.create', compact('jenis'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreRequest $request)
     {
         $this->authorize('create', Produk::class);
 
-        // Mengambil semua data yang lolos validasi dari StoreRequest
         $dataReq = $request->validated();
 
         $data['user_id'] = Auth::id();
@@ -67,7 +59,6 @@ class ProdukController extends Controller
         $data['harga_jual'] = $dataReq['selling_price'];
         $data['stok'] = $dataReq['stock'] ?? 0;
 
-        // PERBAIKAN: Mengubah 'foto' menjadi 'gambar' sesuai input Form Blade
         if ($request->hasFile('gambar')) {
             $data['foto'] = $request->file('gambar')->store('products', 'public');
         }
@@ -79,17 +70,11 @@ class ProdukController extends Controller
             ->with('success', 'Produk berhasil ditambahkan');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Produk $produk)
     {
         $this->authorize('update', $produk);
@@ -99,16 +84,12 @@ class ProdukController extends Controller
         return view('produk.edit', compact('produk', 'jenis'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(UpdateRequest $request, Produk $produk)
     {
         $this->authorize('update', $produk);
 
         $dataReq = $request->validated();
 
-        // PERBAIKAN: Menambahkan field 'nama' agar nama produk tidak hilang/terhapus saat di-update
         $data = [
             'user_id'    => Auth::id(),
             'jenis_id'   => $request->input('jenis_id'),
@@ -118,7 +99,6 @@ class ProdukController extends Controller
             'stok'       => $dataReq['stock'],
         ];
 
-        // PERBAIKAN: Mengubah 'foto' menjadi 'gambar' sesuai input Form Blade
         if ($request->hasFile('gambar')) {
             if ($produk->foto) {
                 Storage::disk('public')->delete($produk->foto);
@@ -129,13 +109,10 @@ class ProdukController extends Controller
         $produk->update($data);
 
         return redirect()
-            ->route('produk.index') // Diubah ke index agar setelah edit kembali ke tabel utama
+            ->route('produk.index')
             ->with('success', 'Produk berhasil diperbarui');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Produk $produk)
     {
         $this->authorize('delete', $produk);

@@ -68,15 +68,15 @@
     </div>
     <?php endif; ?>
 
-    <!-- 2. BLOK INPUT GAMBAR BARU DAN PREVIEW -->
+    <!-- 2. BLOK INPUT GAMBAR BARU DAN PREVIEW (Sudah disinkronkan ke name="gambar") -->
     <div class="row mb-4">
         <div class="col-md-6">
             <label class="form-label-custom">Gambar</label>
             <input
                 type="file"
-                name="foto"
+                name="gambar"
                 onchange="previewImage(this)"
-                class="form-control form-control-custom <?php $__errorArgs = ['foto'];
+                class="form-control form-control-custom <?php $__errorArgs = ['gambar'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -85,7 +85,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>">
 
-            <?php $__errorArgs = ['foto'];
+            <?php $__errorArgs = ['gambar'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -293,6 +293,9 @@ function previewImage(input) {
     if (input.files && input.files[0]) {
         preview.src = URL.createObjectURL(input.files[0]);
         preview.style.display = 'block';
+    } else {
+        preview.src = "#";
+        preview.style.display = 'none';
     }
 }
 </script>

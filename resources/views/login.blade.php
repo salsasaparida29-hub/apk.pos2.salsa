@@ -109,11 +109,11 @@
     </div>
 @endif
 
-{{-- BERIKUT ADALAH TAMBAHAN KODE BARU TANPA MENGUBAH STRUKTUR ASLI ANDA --}}
 @if (session('success'))
-    <!-- Notifikasi full-width warna ungu muda, pas muncul saat klik logout -->
-    <div class="alert alert-purple-custom status-banner small mb-0">
-        {{ session('success') }}
+    <div class="container-fluid px-4">
+        <div class="alert alert-purple-custom mt-3 p-3">
+            {{ session('success') }}
+        </div>
     </div>
 @endif
 

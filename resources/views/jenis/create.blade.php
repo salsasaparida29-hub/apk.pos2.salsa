@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card shadow-sm">
-                <div class="card-header bg-primary text-white">
+                <div class="card-header text-white" style="background-color: #6a5ae0;">
                     <h5 class="mb-0">Tambah Jenis Produk</h5>
                 </div>
                 <div class="card-body">
@@ -20,7 +20,7 @@
                         </div>
                         <div class="d-flex justify-content-between">
                             <a href="{{ route('jenis.index') }}" class="btn btn-secondary">Kembali</a>
-                            <button type="submit" class="btn btn-primary">Simpan</button>
+                            <button type="submit" class="btn text-white" style="background-color: #6a5ae0;">Simpan</button>
                         </div>
                     </form>
                 </div>

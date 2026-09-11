@@ -13,6 +13,7 @@ class Produk extends Model
     
     protected $fillable = [
         'user_id',
+        'jenis_id',
         'foto',
         'nama',
         'harga_beli',
@@ -23,6 +24,11 @@ class Produk extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function jenis()
+    {
+        return $this->belongsTo(Jenis::class, 'jenis_id');
     }
 
     public function itemPenjualan()

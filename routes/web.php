@@ -30,12 +30,14 @@ Route::middleware('auth')->group(function () {
         Route::delete('/users/destroy/{user}', [UserController::class, 'destroy'])->name('users.destroy');
     });
 
-    Route::middleware('role:admin,kasir')->group(function () {
-        // 2. TAMBAHKAN RUTE JENIS DI SINI (Bisa diakses Admin dan Kasir)
+       Route::middleware('role:admin,kasir')->group(function () {
         Route::resource('/jenis', JenisController::class); 
-        
         Route::resource('/produk', ProdukController::class);
         Route::resource('/penjualan', PenjualanController::class);
         Route::resource('/itempenjualan', ItemPenjualanController::class);
+
+        Route::get('/tentang', function () {
+            return view('tentang');
+        })->name('tentang');
     });
 });
