@@ -15,6 +15,7 @@
          height="200"
          style="object-fit: cover;">
 
+
     <h1 class="mt-4 fw-bold">Toko Kosmetik</h1>
 
     <p class="mt-3">
@@ -27,6 +28,8 @@
         Aplikasi Point of Sale ini dibuat untuk memudahkan pengelolaan data produk, jenis produk, dan
         transaksi penjualan di toko kami.
     </p>
+
+    <p class="mt-4 fw-bold"> Alamat: Jl. HZ. Mustofa No.6, Kota Tasikmalaya, Jawa Barat</p>
 
 </div>
 @endsection

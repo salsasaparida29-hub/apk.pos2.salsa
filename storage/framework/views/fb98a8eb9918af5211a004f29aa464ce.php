@@ -1,5 +1,12 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
+     <img src="<?php echo e(asset('assets/img/img.jpg')); ?>" 
+         alt="Foto Profil" 
+         class="rounded-circle shadow" 
+         width="50" 
+         height="50"
+         style="object-fit: cover;">
+
     <a class="navbar-brand" href="#">Toko Kosmetik</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -15,12 +22,12 @@
           <a class="nav-link <?php echo e(Request::is('admin/users') ? 'active' : ''); ?>" href="<?php echo e(route('admin.users')); ?>">Users</a>
         </li>
         <?php endif; ?>
-
-        <!-- MENU JENIS (SEBELUM PRODUK) -->
+        <?php if(auth()->user()->role_id == 1): ?>
+       
         <li class="nav-item">
           <a class="nav-link <?php echo e(Request::is('jenis') ? 'active' : ''); ?>" href="<?php echo e(route('jenis.index')); ?>">Jenis</a>
         </li>
-
+        <?php endif; ?>
         <li class="nav-item">
           <a class="nav-link <?php echo e(Request::is('produk') ? 'active' : ''); ?>" href="<?php echo e(route('produk.index')); ?>">Produk</a>
         </li>

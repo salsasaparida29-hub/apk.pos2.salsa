@@ -1,5 +1,12 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
+     <img src="{{ asset('assets/img/img.jpg') }}" 
+         alt="Foto Profil" 
+         class="rounded-circle shadow" 
+         width="50" 
+         height="50"
+         style="object-fit: cover;">
+
     <a class="navbar-brand" href="#">Toko Kosmetik</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -16,7 +23,7 @@
         </li>
         @endif
         @if(auth()->user()->role_id == 1)
-        <!-- MENU JENIS (SEBELUM PRODUK) -->
+       
         <li class="nav-item">
           <a class="nav-link {{ Request::is('jenis') ? 'active' : ''}}" href="{{ route('jenis.index') }}">Jenis</a>
         </li>
